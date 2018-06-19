@@ -10,6 +10,20 @@ RSpec.describe User, type: :model do
     )
   }
 
+  let(:board) {
+    Board.create(
+      :topic => "Coffee Break"
+      :created_by => user.id
+    )
+  }
+
+  let(:board_two) {
+    Board.create(
+      :topic => "Weekend Shenanigans"
+      :created_by => user.id
+    )
+  }
+
   it "is valid with a name, username, email, and password" do
     expect(user).to be_valid
   end
@@ -24,6 +38,19 @@ RSpec.describe User, type: :model do
 
   it "is not valid without an email" do
     expect(User.new(:username => "PwrdHater", :name => "John Doe", :password => "password")).not_to be_valid
+  end
+
+  it "has many messages" do
+    first_message = Message.create(:user_id => user.id, :board_id => board.id, :content => "This is the first message!")
+    second_message = Message.create(:user_id => user.id, :board_id => board.id, :content => "This is the second message!")
+    expect(user.messages.first).to eq(first_message)
+    expect(user.messages.last).to eq(second_message)
+  end
+
+  it "has many boards through messages" do
+    user.boards << [board, board_two]
+    expect(user.boards.first).to eq(board)
+    expect(user.boards.last).to eq(board_two)
   end
 
 end
