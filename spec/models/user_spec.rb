@@ -3,23 +3,23 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) {
     User.create(
-      :name => "Aspen James"
-      :username => "ajames"
-      :email => "aspen@email.co"
+      :name => "Aspen James",
+      :username => "ajames",
+      :email => "aspen@email.co",
       :password => "password"
     )
   }
 
   let(:board) {
     Board.create(
-      :topic => "Coffee Break"
+      :topic => "Coffee Break",
       :created_by => user.id
     )
   }
 
   let(:board_two) {
     Board.create(
-      :topic => "Weekend Shenanigans"
+      :topic => "Weekend Shenanigans",
       :created_by => user.id
     )
   }
