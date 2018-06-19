@@ -5,7 +5,7 @@ class CreateMessages < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :board_id
 
-      t.timestamps
+      t.timestamps :null => false
     end
   end
 end

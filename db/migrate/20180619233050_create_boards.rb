@@ -4,7 +4,7 @@ class CreateBoards < ActiveRecord::Migration[5.2]
       t.string :topic
       t.integer :created_by
 
-      t.timestamps
+      t.timestamps :null => false
     end
   end
 end
