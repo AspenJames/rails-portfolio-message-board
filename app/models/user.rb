@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
-  has_many :boards, :through => :messages
   has_many :messages
+  has_many :boards, :through => :messages
 
   def created_boards
     @created = []
