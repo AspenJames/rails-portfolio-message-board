@@ -53,4 +53,9 @@ RSpec.describe User, type: :model do
     expect(user.boards.last).to eq(board_two)
   end
 
+  it "has a method that returns boards the user created" do
+    expect(user.created_boards).to include(board)
+    expect(user.created_boards).to include(board_two)
+  end
+
 end
