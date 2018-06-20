@@ -4,14 +4,18 @@
     <div class="small-12 medium-6 column small-order-2 medium-order-1">
       <div class="login-box-form-section">
         <h1 class="login-box-title">Sign up</h1>
-        <input class="login-box-input" type="text" name="user[name]" placeholder="Username" />
-        <input class="login-box-input" type="text" name="user[username]" placeholder="Username" />
-        <input class="login-box-input" type="email" name="user[email]" placeholder="E-mail" />
-        <input class="login-box-input" type="password" name="user[password]" placeholder="Password" />
-        <input class="login-box-submit-button" type="submit" name="signup_submit" value="Sign Up" />
+        <%= form_for @user do |f| %>
+          <%= f.text_field :name, :class => "login-box-input", :placeholder => "Name" %>
+          <%= f.text_field :username, :class => "login-box-input", :placeholder => "Username" %>
+          <%= f.email_field :email, :class => "login-box-input", :placeholder => "E-mail" %>
+          <%= f.password_field :password, :class => "login-box-input", :placeholder => "Password" %>
+          <%= f.submit :class => "login-box-input", :value => "Sign Up" %>
+        <% end %>
       </div>
       <div class="or">OR</div>
     </div>
+    <!-- This will be for logging in with omniauth later -->
+    
     <!-- <div class="small-12 medium-6 column small-order-1 medium-order-2 login-box-social-section">
       <div class="login-box-social-section-inner">
         <span class="login-box-social-headline">Sign in with<br />your social network</span>
