@@ -14,6 +14,7 @@ describe "Feature Test: User Signup", :type => :feature do
     visit '/signup'
     # user_signup method is defined in login_helper.rb
     user_signup
+    # get_rack_session_key method is provided by rack_session_access gem
     expect(page.get_rack_session_key('user_id')).to_not be_nil
   end
 
