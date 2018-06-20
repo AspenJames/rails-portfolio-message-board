@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   def created_boards
     @created = []
-    @created << Board.where(:created_at => self.id)
+    @created << Board.where(:created_by => self.id)
   end
 
 end
