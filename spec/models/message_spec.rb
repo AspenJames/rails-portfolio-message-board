@@ -41,4 +41,12 @@ RSpec.describe Message, type: :model do
     expect(Message.new(:user_id => user.id, :board_id => board.id)).not_to be_valid
   end
 
+  it "belongs to one User" do
+    expect(message.user).to eq(user)
+  end
+
+  it "belongs to one Board" do
+    expect(message.board).to eq(board)
+  end
+
 end
