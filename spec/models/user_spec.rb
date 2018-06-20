@@ -50,14 +50,13 @@ RSpec.describe User, type: :model do
   it "has many boards through messages" do
     first_message = Message.create(:user_id => user.id, :board_id => board.id, :content => "This is the first message!")
     second_message = Message.create(:user_id => user.id, :board_id => board_two.id, :content => "This is the second message!")
-    binding.pry
     expect(user.boards.first).to eq(board)
     expect(user.boards.last).to eq(board_two)
   end
 
   it "has a method that returns boards the user created" do
-    expect(user.created_boards).to include(board)
-    expect(user.created_boards).to include(board_two)
+    expect(user.created_boards.first).to include(board)
+    expect(user.created_boards.first).to include(board_two)
   end
 
 end
