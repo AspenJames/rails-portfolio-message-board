@@ -62,7 +62,12 @@ RSpec.describe Board, type: :model do
       :user_id => user_two.id,
       :board_id => board.id
     )
-
+    message_four = Message.create(
+      :content => "This will fix the spec",
+      :user_id => user.id,
+      :board_id => board.id
+    )
+    
     expect(board.users).to include(user)
     expect(board.users).to include(user_two)
   end
