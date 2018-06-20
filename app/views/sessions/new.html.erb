@@ -1,0 +1,26 @@
+<!-- sessions/new -->
+<div class="login-box">
+  <div class="row collapse expanded">
+    <div class="small-12 medium-6 column small-order-2 medium-order-1">
+      <div class="login-box-form-section">
+        <h1 class="login-box-title">Log In</h1>
+        <%= form_tag(login_path) do %>
+          <%= text_field_tag "user[username]", nil, :class => "login-box-input", :placeholder => "Username" %>
+          <%= password_field_tag "user[password]", nil, :class => "login-box-input", :placeholder => "Password" %>
+          <%= submit_tag "Log In", :class => "login-box-input" %>
+        <% end %>
+      </div>
+      <div class="or">OR</div>
+    </div>
+    <!-- This will be for logging in with omniauth later -->
+
+    <!-- <div class="small-12 medium-6 column small-order-1 medium-order-2 login-box-social-section">
+      <div class="login-box-social-section-inner">
+        <span class="login-box-social-headline">Sign in with<br />your social network</span>
+        <a class="login-box-social-button-facebook">Log in with facebook</a>
+        <a class="login-box-social-button-twitter">Log in with Twitter</a>
+        <a class="login-box-social-button-google">Log in with Google+</a>
+      </div>
+    </div> -->
+  </div>
+</div>
