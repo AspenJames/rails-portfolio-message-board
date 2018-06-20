@@ -4,10 +4,10 @@ describe "Feature Test: User Signup", :type => :feature do
 
   it "successfully signs up" do
     visit '/signup'
-    # user_signup method is defined in login_helper.rb
     expect(current_path).to eq('/signup')
+    # user_signup method is defined in login_helper.rb
     user_signup
-    expect(current_path).to eq(root_path) # FILL IN ROOT_PATH
+    expect(current_path).to eq(root_path)
   end
 
   it "on sign up, successfully adds a session hash" do
