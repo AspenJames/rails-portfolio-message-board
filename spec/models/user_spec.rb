@@ -48,7 +48,8 @@ RSpec.describe User, type: :model do
   end
 
   it "has many boards through messages" do
-    user.boards << [board, board_two]
+    first_message = Message.create(:user_id => user.id, :board_id => board.id, :content => "This is the first message!")
+    second_message = Message.create(:user_id => user.id, :board_id => board.id, :content => "This is the second message!")
     expect(user.boards.first).to eq(board)
     expect(user.boards.last).to eq(board_two)
   end
