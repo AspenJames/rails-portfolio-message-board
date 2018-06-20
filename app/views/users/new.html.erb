@@ -4,7 +4,7 @@
     <div class="small-12 medium-6 column small-order-2 medium-order-1">
       <div class="login-box-form-section">
         <h1 class="login-box-title">Sign up</h1>
-        <%= form_for @user do |f| %>
+        <%= form_for(@user, :url => signup_path, :method => "POST") do |f| %>
           <%= f.text_field :name, :class => "login-box-input", :placeholder => "Name" %>
           <%= f.text_field :username, :class => "login-box-input", :placeholder => "Username" %>
           <%= f.email_field :email, :class => "login-box-input", :placeholder => "E-mail" %>
@@ -15,7 +15,7 @@
       <div class="or">OR</div>
     </div>
     <!-- This will be for logging in with omniauth later -->
-    
+
     <!-- <div class="small-12 medium-6 column small-order-1 medium-order-2 login-box-social-section">
       <div class="login-box-social-section-inner">
         <span class="login-box-social-headline">Sign in with<br />your social network</span>
