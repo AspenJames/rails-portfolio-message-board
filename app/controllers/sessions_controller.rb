@@ -10,6 +10,13 @@ class SessionsController < ApplicationController
         u.name = auth_hash[:info][:name]
         u.email = auth_hash[:info][:email]
         u.password = SecureRandom.hex(16)
+        if auth_hash[:info][:email].nil?
+          # If a GitHub user's email is set to private, it
+          # will return nil for the above parameter.
+          # Setting a uniquely-generated email below fakes
+          # a valid email to allow creating a user + logging in.
+          u.email = "#{u.username}@noemail.com"
+        end
       end
       session[:user_id] = @user.id
       redirect_to root_path
