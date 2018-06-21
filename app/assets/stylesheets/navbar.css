@@ -1,19 +1,17 @@
-.no-js {
-  @include breakpoint(small only) {
-    .top-bar {
-      display: none;
-    }
+@media screen and (max-width: 39.9375em) {
+  .no-js .top-bar {
+    display: none;
   }
+}
 
-  @include breakpoint(medium) {
-    .title-bar {
-      display: none;
-    }
+@media print, screen and (min-width: 40em) {
+  .no-js .title-bar {
+    display: none;
   }
 }
 
 [data-sticky] {
-  width:100%;
+  width: 100%;
 }
 
 .sticky-container {
