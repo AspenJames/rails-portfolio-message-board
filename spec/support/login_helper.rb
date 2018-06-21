@@ -37,4 +37,10 @@ module LoginHelper
     click_button("Log In")
   end
 
+  def user_wrong_password
+    fill_in("user[username]", :with => "jdoe")
+    fill_in("user[password]", :with => "wrong_pass")
+    click_button("Log In")
+  end
+
 end
