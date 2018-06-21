@@ -17,10 +17,15 @@
 
     <nav class="hover-underline-menu">
       <ul class="menu align-center">
-        <li><a class="underline-from-center" href="#">One</a></li>
-        <li><a class="underline-from-center" href="#">Two</a></li>
-        <li><a class="underline-from-center" href="#">Three</a></li>
-        <li><a class="underline-from-center" href="#">Four</a></li>
+        <li><a class="underline-from-center" href=root_path>Home</a></li>
+        <% if logged_in? %>
+          <li><a class="underline-from-center" href=user_path(current_user)>Profile</a></li>
+          <li><a class="underline-from-center" href=boards_path>Boards</a></li>
+          <li><a class="underline-from-center" href=logout_path>Log Out</a></li>
+        <% else %>
+          <li><a class="underline-from-center" href=signup_path>Sign Up</a></li>
+          <li><a class="underline-from-center" href=login_path>Log In</a></li>
+        <% end %>
       </ul>
     </nav>
 
