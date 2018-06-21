@@ -3,12 +3,12 @@ Rails.application.routes.draw do
 
   root 'boards#index'
 
-  resources :users, :only => [:index, :show, :edit, :update, :destory]
+  resources :users, :only => [:show, :edit, :update, :destory]
   get '/signup' => 'users#new', :as => "signup"
   post '/signup' => 'users#create'
 
   resources :boards do
-    resources :messages
+    resources :messages, :except => :index
   end
 
   get '/login' => 'sessions#new', :as => "login"
