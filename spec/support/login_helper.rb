@@ -8,6 +8,20 @@ module LoginHelper
     click_button('Sign Up')
   end
 
+  def user_signup_no_username
+    fill_in("user[name]", :with => "Aspen James")
+    fill_in("user[email]", :with => "aspen@email.co")
+    fill_in("user[password]", :with => "password")
+    click_button('Sign Up')
+  end
+
+  def user_signup_no_password
+    fill_in("user[name]", :with => "Aspen James")
+    fill_in("user[username]", :with => "ajames")
+    fill_in("user[email]", :with => "aspen@email.co")
+    click_button('Sign Up')
+  end
+
   def create_user
     @jdoe = User.create(
       :name => "John Doe",
