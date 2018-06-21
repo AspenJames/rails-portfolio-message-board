@@ -234,6 +234,6 @@
 }
 
 
-div.field_with_errors {
-
+p.error_message {
+  color: #ff0000;
 }
