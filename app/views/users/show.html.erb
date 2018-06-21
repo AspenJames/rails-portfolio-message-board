@@ -1,1 +1,26 @@
 <!-- users/show -->
+<div class="callout large primary">
+  <div class="text-center">
+    <% if @user.name %>
+      <h1><%= @user.name %></h1>
+    <% else %>
+      <h1><%= @user.username %></h1>
+    <% end %>
+    <h2 class="subheader">Your Active Boards</h2>
+  </div>
+</div>
+
+<article class="grid-container">
+  <div class="grid-x align-center">
+    <% @user.boards.each do |board| %>
+    <div class="cell medium-8">
+      <div class="blog-post">
+        <h3><%= link_to board.topic, board_path(board) %></h3>
+        <% board.messages.limit(-3) do |message| %>
+          <p><%= message.user.username %> - <%= message.content %></p>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</article>
