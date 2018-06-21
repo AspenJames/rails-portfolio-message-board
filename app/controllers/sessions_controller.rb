@@ -21,8 +21,8 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      @user = User.find_by(:username => params[:user][:username])
-      if @user && @user.authenticate(params[:user][:password])
+      @user = User.find_by(:username => params[:user][:username]).try(:authenticate, params[:user][:password])
+      if @user
         session[:user_id] = @user.id
         redirect_to root_path
       else
@@ -42,6 +42,5 @@ class SessionsController < ApplicationController
   def auth_hash
     request.env['omniauth.auth']
   end
-
 
 end
