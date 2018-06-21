@@ -4,6 +4,11 @@
     <div class="small-12 medium-6 column small-order-2 medium-order-1">
       <div class="login-box-form-section">
         <h1 class="login-box-title">Sign up</h1>
+        <% if @user.errors.any? %>
+          <% @user.errors.full_messages.each do |error| %>
+            <p class="error_message"><%= error %></p>
+          <% end %>
+        <% end %>
         <%= form_for(@user, :url => signup_path, :method => "POST") do |f| %>
           <%= f.text_field :name, :class => "login-box-input", :placeholder => "Name" %>
           <%= f.text_field :username, :class => "login-box-input", :placeholder => "Username" %>
