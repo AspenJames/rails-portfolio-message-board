@@ -99,3 +99,41 @@ describe "Feature Test: User Signout", :type => :feature do
   end
 
 end
+
+describe "Feature Test: User Show", :type => :feature do
+
+  before(:each) do
+    # helper methods are defined in login_helper.rb
+    visit '/signup'
+    user_signup
+    click_link("Log Out")
+    visit '/signup'
+    user_2_signup
+    click_link("Log Out")
+  end
+
+  it "redirects to root if not signed in" do
+    visit '/users/1'
+    expect(current_path).to eq(root_path)
+  end
+
+  it "shows the user's profile if they are logged in" do
+    visit '/login'
+    aspen_login
+    click_link("Profile")
+    expect(current_path).to eq(user_path(1))
+    expect(page).to have_content("Aspen James")
+  end
+
+  it "shows the user's username if the user's name is nil" do
+    visit '/login'
+    k_law_login
+    click_link("Profile")
+    expect(current_path).to eq(user_path(2))
+    expect(page).to have_content("k_law")
+  end
+
+  
+
+
+end
