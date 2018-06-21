@@ -17,7 +17,7 @@
       <div class="blog-post">
         <h3><%= link_to board.topic, board_path(board) %></h3>
         <% board.messages.limit(-3) do |message| %>
-          <p><%= message.user.username %> - <%= message.content %></p>
+          <p><strong><%= message.user.username %></strong> - <%= message.content %></p>
         <% end %>
       </div>
     </div>
