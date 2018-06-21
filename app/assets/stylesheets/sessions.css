@@ -187,7 +187,7 @@
   color: #fefefe;
 }
 
-.login-box-social-button-google {
+.login-box-social-button-github {
   display: inline-block;
   vertical-align: middle;
   margin: 0 0 1rem 0;
@@ -200,7 +200,7 @@
   line-height: 1;
   text-align: center;
   cursor: pointer;
-  background-color: #dd4b39;
+  background-color: #24292E;
   color: #fefefe;
   display: block;
   width: 100%;
