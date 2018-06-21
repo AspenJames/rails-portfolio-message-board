@@ -7,7 +7,7 @@
         <%= form_tag(login_path) do %>
           <%= text_field_tag "user[username]", nil, :class => "login-box-input", :placeholder => "Username" %>
           <%= password_field_tag "user[password]", nil, :class => "login-box-input", :placeholder => "Password" %>
-          <%= submit_tag "Log In", :class => "login-box-input" %>
+          <%= submit_tag "Log In", :class => "login-box-submit-button" %>
         <% end %>
       </div>
       <div class="or">OR</div>
