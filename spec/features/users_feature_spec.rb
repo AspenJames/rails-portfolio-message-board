@@ -82,12 +82,12 @@ describe "Feature Test: User Signout", :type => :feature do
     expect(page).to have_content("Log Out")
   end
 
-  it "redirects to login page after logging out" do
+  it "redirects to root after logging out" do
     visit '/signup'
     #user_signup is defined in login_helper.rb
     user_signup
     click_link("Log Out")
-    expect(current_path).to eq(login_path)
+    expect(current_path).to eq(root_path)
   end
 
   it "clears the session hash when 'Log Out' is clicked" do
