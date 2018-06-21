@@ -56,4 +56,19 @@ describe "Feature Test: User Signup", :type => :feature do
     expect(page.get_rack_session_key('user_id')).to_not be_nil
   end
 
+  it "does not log a user in with improper credentials" do
+    create_user
+    visit '/login'
+    user_wrong_password
+    expect(page.get_rack_session.has_key?('user_id')).to_not be true
+  end
+
+  it "re-renders the login form with an error message" do
+    create_user
+    visit '/login'
+    user_wrong_password
+    expect(current_path).to eq('/login')
+    expect(page.body).to include("Incorrect username and/or password")
+  end
+
 end
