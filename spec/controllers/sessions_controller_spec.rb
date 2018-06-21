@@ -23,7 +23,7 @@ RSpec.describe SessionsController, type: :controller do
       auth = ActiveSupport::HashWithIndifferentAccess.new(auth)
       @request.env['omniauth.auth'] = auth
       get :create
-      expect(@request.session[:user_id]).to eq(user.id)
+      expect(@request.session[:user_id]).to eq(gh_user.id)
     end
 
     it 'finds user from twitter if it exists and logs the user in' do
@@ -38,7 +38,7 @@ RSpec.describe SessionsController, type: :controller do
       auth = ActiveSupport::HashWithIndifferentAccess.new(auth)
       @request.env['omniauth.auth'] = auth
       get :create
-      expect(@request.session[:user_id]).to eq(user.id)
+      expect(@request.session[:user_id]).to eq(tw_user.id)
     end
 
     it 'creates user if it doesnt exist in the db' do
