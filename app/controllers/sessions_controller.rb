@@ -4,13 +4,24 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(:username => params[:user][:username])
-    if @user && @user.authenticate(params[:user][:password])
+    if auth_hash
+      @user = User.find_or_create_by(:uid => auth_hash[:uid], :provider => auth_hash[:provider]) do |u|
+        u.username = auth_hash[:info][:nickname]
+        u.name = auth_hash[:info][:name]
+        u.email = auth_hash[:info][:email]
+        u.password = SecureRandom.hex(16)
+      end
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      flash[:alert] = "Incorrect username and/or password"
-      render :new
+      @user = User.find_by(:username => params[:user][:username])
+      if @user && @user.authenticate(params[:user][:password])
+        session[:user_id] = @user.id
+        redirect_to root_path
+      else
+        flash[:alert] = "Incorrect username and/or password"
+        render :new
+      end
     end
   end
 
