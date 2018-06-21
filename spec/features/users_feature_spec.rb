@@ -112,9 +112,9 @@ describe "Feature Test: User Show", :type => :feature do
     click_link("Log Out")
   end
 
-  it "redirects to root if not signed in" do
+  it "redirects to login if not signed in" do
     visit '/users/1'
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(login_path)
   end
 
   it "shows the user's profile if they are logged in" do
@@ -133,7 +133,7 @@ describe "Feature Test: User Show", :type => :feature do
     expect(page).to have_content("k_law")
   end
 
-  
+
 
 
 end
