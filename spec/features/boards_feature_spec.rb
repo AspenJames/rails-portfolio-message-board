@@ -89,6 +89,12 @@ describe "Feature Test: Board Show", :type => :feature do
       expect(current_path).to eq(board_path(@lunch_board))
       expect(page).to have_content("New Message Lorem ipsum")
     end
+
+    it "does not submit a blank message, displays an error message" do
+      visit board_path(@lunch_board)
+      click_button("Post Message")
+      expect(page).to have_content("Content can't be blank")
+    end
   end
 end
 
