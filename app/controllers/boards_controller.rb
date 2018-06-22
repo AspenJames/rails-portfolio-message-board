@@ -10,6 +10,12 @@ class BoardsController < ApplicationController
     @message = Message.new
   end
 
+  def edit
+    set_board
+  end
+
+  
+
   private
 
   def set_board
