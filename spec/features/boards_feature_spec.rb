@@ -64,7 +64,7 @@ describe "Feature Test: Board Show", :type => :feature do
       expect(current_path).to eq(board_path(@coffee_board))
       expect(page).to have_content(@coffee_board.topic)
       expect(page).to have_content(@coffee_board.messages.last.content)
-      expect(page).to have_content(@coffee_board.created_by.username)
+      expect(page).to have_content(@coffee_board.creator.username)
     end
 
     it "displays an edit option if the current user is the board creator" do
@@ -75,6 +75,19 @@ describe "Feature Test: Board Show", :type => :feature do
     it "does not display an edit option if the current user is not the board creator" do
       visit board_path(@coffee_board)
       expect(page).not_to have_content("Edit Board")
+    end
+
+    it "displays a form to submit a new message" do
+      visit board_path(@coffee_board)
+      expect(page).to have_field("message[content]")
+    end
+
+    it "submits a new message" do
+      visit board_path(@lunch_board)
+      fill_in("message[content]", :with => "New Message Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
+      click_button("Post Message")
+      expect(current_path).to eq(board_path(@lunch_board))
+      expect(page).to have_content("New Message Lorem ipsum")
     end
   end
 end
