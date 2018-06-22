@@ -34,7 +34,6 @@
             <%= form_for @message, :url => board_messages_path(@board), :method => "POST" do |f| %>
               <%= f.text_area :content, :placeholder => "Your message here!" %>
               <%= f.hidden_field :user_id, :value => current_user.id %>
-              <%= f.hidden_field :board_id, :value => @board.id %>
               <%= f.submit :class => "button expanded", :value => "Post Message"%>
             <% end %>
           </div>
