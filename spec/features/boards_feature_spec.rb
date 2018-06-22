@@ -1,7 +1,7 @@
 require_relative "../rails_helper"
 
 describe "Feature Test: Boards Index", :type => :feature do
-  before(:each) do # this initiates data and logs a user in
+  before(:each) do
     # create_data is defined in boards_helper.rb
     create_data
   end
@@ -15,6 +15,7 @@ describe "Feature Test: Boards Index", :type => :feature do
 
   context "logged in" do
     before(:each) do
+      # ensures there is a user logged in
       visit login_path
       user_login # defined in login_helper.rb
       visit boards_path
@@ -40,7 +41,17 @@ describe "Feature Test: Boards Index", :type => :feature do
 end
 
 describe "Feature Test: Board Show", :type => :feature do
+  before(:each) do
+    # create_data is defined in boards_helper.rb
+    create_data
+  end
 
+  context "logged out" do
+    it "redirects to root if not logged in" do
+      visit board_path(@lunch_board)
+      expect(current_path).to eq(root_path)
+    end
+  end
 end
 
 describe "Feature Test: Board Edit", :type => :feature do
