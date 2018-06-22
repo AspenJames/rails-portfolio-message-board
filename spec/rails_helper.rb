@@ -35,6 +35,7 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
   config.include LoginHelper, :type => :feature
+  config.include BoardsHelper, :type => :feature
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
