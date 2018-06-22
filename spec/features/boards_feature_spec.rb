@@ -2,7 +2,7 @@ require_relative "../rails_helper"
 
 describe "Feature Test: Boards Index", :type => :feature do
   before(:each) do
-    # create_data is defined in boards_helper.rb
+    # create_data is defined in support/boards_helper.rb
     create_data
   end
 
@@ -42,7 +42,7 @@ end
 
 describe "Feature Test: Board Show", :type => :feature do
   before(:each) do
-    # create_data is defined in boards_helper.rb
+    # create_data is defined in support/boards_helper.rb
     create_data
   end
 
@@ -100,5 +100,23 @@ describe "Feature Test: Board Show", :type => :feature do
 end
 
 describe "Feature Test: Board Edit", :type => :feature do
+  before(:each) do
+    create_data # defined in support/boards_helper.rb
+  end
+
+  it "renders an edit form for the board" do
+    visit edit_board_path(@lunch_board)
+    expect(current_path).to eq(edit_board_path(@lunch_board))
+    expect(page).to have_field("board[topic]")
+  end
+
+  it "should update the board and render the show view" do
+    visit edit_board_path(@lunch_board)
+    fill_in("board[topic]", :with => "I'm Hungry")
+    click_button("Update Board")
+    expect(@lunch_board.topic).to eq("I'm Hungry")
+    expect(current_path).to eq(board_path(@lunch_board))
+    expect(page).to have_content("I'm Hungry")
+  end
 
 end
