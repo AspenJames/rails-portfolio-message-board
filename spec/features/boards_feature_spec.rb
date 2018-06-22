@@ -52,6 +52,31 @@ describe "Feature Test: Board Show", :type => :feature do
       expect(current_path).to eq(root_path)
     end
   end
+
+  context "logged in" do
+    before(:each) do
+      visit login_path
+      aspen_login #defined in login_helper.rb
+    end
+
+    it "displays the board's topic, creator, and messages" do
+      visit board_path(@coffee_board)
+      expect(current_path).to eq(board_path(@coffee_board))
+      expect(page).to have_content(@coffee(_board.topic)
+      expect(page).to have_content(@coffee_board.messages.last.content)
+      expect(page).to have_content(@coffee_board.created_by.username)
+    end
+
+    it "displays an edit option if the current user is the board creator" do
+      vist board_path(@lunch_board)
+      expect(page).to have_link("Edit Board", :href => edit_board_path(@lunch_board))
+    end
+
+    it "does not display an edit option if the current user is not the board creator" do
+      visit board_path(@coffee_board)
+      expect(page).not_to have_content("Edit Board")
+    end
+  end
 end
 
 describe "Feature Test: Board Edit", :type => :feature do
