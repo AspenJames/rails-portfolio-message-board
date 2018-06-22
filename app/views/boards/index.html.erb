@@ -1,1 +1,23 @@
 <!-- boards/index -->
+<div class="callout large primary">
+  <div class="text-center">
+    <h1>Available Messaging Boards</h1>
+    <h2 class="subheader">Visit a specific board to view and post messages</h2>
+  </div>
+</div>
+
+<article class="grid-container">
+  <div class="grid-x align-center">
+    <% @boards.each do |board| %>
+    <div class="cell medium-8">
+      <div class="blog-post">
+        <h3><%= board.topic %></h3>
+        <% board.messages.limit(2).each do |message| %>
+          <p><strong><%= message.user.username %></strong> - <%= message.content %></p>
+        <% end %>
+        <h4><a class="button button-rounded-hover" href=<%= board_path(board) %>>View all...</a></h4>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</article>
