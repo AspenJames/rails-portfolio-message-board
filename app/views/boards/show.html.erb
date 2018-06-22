@@ -11,7 +11,7 @@
 
 <article class="grid-container">
   <div class="grid-x align-center">
-    <% @board.messages.each do |message| %>
+    <% @board.messages.reject{|m| m.id.nil?}.each do |message| %>
     <div class="cell medium-8">
       <div class="blog-post">
         <h3><%= message.user.username %></h3>
@@ -26,20 +26,21 @@
 
   <!-- new message form -->
   <div class="gridx align-center">
-    <form class="comment-section-form">
+    <%= form_for @message, :url => board_messages_path(@board), :method => "POST", :class => "comment-section-form" do |f| %>
       <div class="comment-section-box">
         <div class="row">
           <div class="small-12 column">
             <h4>Post a Message</h4>
-            <%= form_for @message, :url => board_messages_path(@board), :method => "POST" do |f| %>
-              <%= f.text_area :content, :placeholder => "Your message here!" %>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
-              <%= f.submit :class => "button expanded", :value => "Post Message"%>
+            <% @message.errors.full_messages.each do |error| %>
+              <p class="error_message"><%= error %></p>
             <% end %>
+            <%= f.text_area :content, :placeholder => "Your message here!" %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.submit :class => "button expanded", :value => "Post Message"%>
           </div>
         </div>
       </div>
-    </form>
+    <% end %>
   </div>
 
 </article>
