@@ -93,6 +93,7 @@ describe "Feature Test: Board Show", :type => :feature do
     it "does not submit a blank message, displays an error message" do
       visit board_path(@lunch_board)
       click_button("Post Message")
+      fill_in("message[content]", :with=> "    ")
       expect(page).to have_content("Content can't be blank")
     end
   end
