@@ -48,9 +48,7 @@
   z-index: -1;
 }
 
-.floated-label-wrapper label input[type=text],
-.floated-label-wrapper label input[type=email],
-.floated-label-wrapper label input[type=password] {
+.floated-label-wrapper label input[type=text] {
   border-radius: 4px;
   font-size: 1.75em;
   padding: 0.5em;
@@ -58,7 +56,8 @@
 
 .floated-label-wrapper label.show {
   opacity: 1;
-  top: -0.85rem;
+  top: 4rem;
+  left: 1.25rem;
   z-index: 1;
   transition: all 0.15s ease-in;
 }
