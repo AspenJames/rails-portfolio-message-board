@@ -7,6 +7,7 @@ class BoardsController < ApplicationController
 
   def show
     set_board
+    @message = Message.new
   end
 
   private
