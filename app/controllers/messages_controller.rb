@@ -2,11 +2,11 @@ class MessagesController < ApplicationController
 
   def create
     @board = Board.find(params[:board_id])
-    @board.messages.build(message_params)
+    @message = @board.messages.build(message_params)
       if @board.save
         redirect_to board_path(@board)
       else
-        render 'boards#show'
+        render 'boards/show'
       end
   end
 
