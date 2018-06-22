@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
 
   resources :boards do
-    resources :messages, :except => :index
+    resources :messages, :except => [:index, :new]
   end
 
   get '/login' => 'sessions#new', :as => "login"
