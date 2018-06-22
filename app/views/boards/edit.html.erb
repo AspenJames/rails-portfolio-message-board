@@ -1,1 +1,22 @@
 <!-- boards/edit -->
+<div class="callout large primary">
+  <div class="text-center">
+    <h1><%= @board.topic %></h1>
+    <h2 class="subheader">Created by <%= @board.creator.name || @board.creator.username %></h2>
+  </div>
+</div>
+
+<article class="grid-container">
+  <div class="grid-x align-center">
+    <div class="cell medium-8">
+      <%= form_for @board, :html => {:class => "callout text-center"} do |f| %>
+        <h2>Edit Board</h2>
+        <div class="floated-label-wrapper">
+          <%= f.label :topic, :class => "show" %>
+          <%= f.text_field :topic %>
+        </div>
+        <%= f.submit :class => "button expanded", :value => "Edit Board" %>
+      <% end %>
+    </div>
+  </div>
+</article>
