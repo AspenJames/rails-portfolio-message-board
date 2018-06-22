@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :boards do
     resources :messages, :except => [:index, :new]
   end
+  # this fixes a bug when a user tries to reload a page after a
+  # failed comment attempt
+  get '/boards/:id/messages' => 'boards#show'
 
   get '/login' => 'sessions#new', :as => "login"
   post '/login' => 'sessions#create'
