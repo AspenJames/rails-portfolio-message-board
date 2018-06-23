@@ -54,10 +54,18 @@
   padding: 0.5em;
 }
 
+div.field_with_errors input {
+  border-radius: 4px;
+  font-size: 1.75em;
+  padding: 0.5em;
+  background-color: #ffcccc;
+}
+
 .floated-label-wrapper label.show {
   opacity: 1;
   top: 4rem;
   left: 1.25rem;
   z-index: 1;
   transition: all 0.15s ease-in;
+  background: transparent;
 }
