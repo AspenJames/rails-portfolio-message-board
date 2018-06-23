@@ -1,5 +1,42 @@
 require_relative "../rails_helper"
 
+describe "Feature Test: Boards New", :type => :feature do
+  context "logged out" do
+    it "redirects to root if not logged in" do
+      visit new_board_path
+      expect(current_path).to eq(root_path)
+    end
+  end
+
+  context "logged in" do
+    before(:each) do
+      visit login_path
+      aspen_login # defined in login_helper.rb
+      visit new_board_path
+    end
+
+    it "renders a new board form" do
+      expect(current_path).to eq(new_board_path)
+      expect(page).to have_field("board[topic]")
+    end
+
+    it "creates a new board with proper input" do
+      fill_in("board[topic]", :with => "This is a new board!")
+      expect(current_path).to eq(board_path(1))
+      expect(page).to have_content("This is a new board!")
+      expect(page).to have_content("Created by Aspen James")
+    end
+
+    it "re-renders the form with inproper input" do
+      fill_in("board[topic]", :with => "   ")
+      expect(page).to have_field("board[topic]")
+      expect(page).to have_css("div.field_with_errors")
+      expect(page).to have_content("Topic can't be blank")
+    end
+  end
+
+end
+
 describe "Feature Test: Boards Index", :type => :feature do
   before(:each) do
     # create_data is defined in support/boards_helper.rb
