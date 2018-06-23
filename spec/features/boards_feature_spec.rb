@@ -28,7 +28,7 @@ describe "Feature Test: Boards New", :type => :feature do
       expect(page).to have_content("Created by Aspen James")
     end
 
-    it "re-renders the form with inproper input" do
+    it "re-renders the form with improper input" do
       fill_in("board[topic]", :with => "   ")
       click_button("Create Board")
       expect(page).to have_field("board[topic]")
