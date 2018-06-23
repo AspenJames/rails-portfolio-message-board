@@ -1,6 +1,10 @@
 class BoardsController < ApplicationController
   before_action :require_login
 
+  def new
+    @board = Board.new
+  end
+
   def index
     @boards = Board.all
   end
