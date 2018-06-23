@@ -102,6 +102,7 @@ end
 describe "Feature Test: Board Edit", :type => :feature do
   before(:each) do
     create_data # defined in support/boards_helper.rb
+    visit login_path
     aspen_login
   end
 
