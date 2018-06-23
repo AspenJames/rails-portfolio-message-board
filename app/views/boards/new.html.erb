@@ -1,1 +1,25 @@
 <!-- boards/new -->
+<div class="callout large primary">
+  <div class="text-center">
+    <h1>Create a New Board</h1>
+  </div>
+</div>
+
+<article class="grid-container">
+  <div class="grid-x align-center">
+    <div class="cell medium-8">
+      <% @board.errors.full_messages.each do |message| %>
+        <p class="error_message"><%= message %></p>
+      <% end %>
+      <%= form_for @board, :html => {:class => "callout text-center"} do |f| %>
+        <h2>Set Board Topic</h2>
+        <div class="floated-label-wrapper">
+          <%= f.label :topic, :class => "show" %>
+          <%= f.text_field :topic %>
+          <%= f.hidden_field :created_by, :value => current_user.id %>
+        </div>
+        <%= f.submit :class => "button expanded", :value => "Create Board" %>
+      <% end %>
+    </div>
+  </div>
+</article>
