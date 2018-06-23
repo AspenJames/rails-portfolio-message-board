@@ -116,7 +116,6 @@ describe "Feature Test: Board Edit", :type => :feature do
     visit edit_board_path(@lunch_board)
     fill_in("board[topic]", :with => "I'm Hungry")
     click_button("Update Board")
-    expect(@lunch_board.topic).to eq("I'm Hungry")
     expect(current_path).to eq(board_path(@lunch_board))
     expect(page).to have_content("I'm Hungry")
   end
