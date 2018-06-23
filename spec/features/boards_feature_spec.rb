@@ -10,8 +10,8 @@ describe "Feature Test: Boards New", :type => :feature do
 
   context "logged in" do
     before(:each) do
-      visit login_path
-      aspen_login # defined in login_helper.rb
+      visit signup_path
+      user_signup # defined in login_helper.rb
       visit new_board_path
     end
 
@@ -22,6 +22,7 @@ describe "Feature Test: Boards New", :type => :feature do
 
     it "creates a new board with proper input" do
       fill_in("board[topic]", :with => "This is a new board!")
+      click_button("Create Board")
       expect(current_path).to eq(board_path(1))
       expect(page).to have_content("This is a new board!")
       expect(page).to have_content("Created by Aspen James")
@@ -29,6 +30,7 @@ describe "Feature Test: Boards New", :type => :feature do
 
     it "re-renders the form with inproper input" do
       fill_in("board[topic]", :with => "   ")
+      click_button("Create Board")
       expect(page).to have_field("board[topic]")
       expect(page).to have_css("div.field_with_errors")
       expect(page).to have_content("Topic can't be blank")
