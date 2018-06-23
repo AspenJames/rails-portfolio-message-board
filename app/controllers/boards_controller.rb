@@ -5,6 +5,15 @@ class BoardsController < ApplicationController
     @board = Board.new
   end
 
+  def create
+    @board = Board.new(board_params(:topic, :created_by))
+    if @board.save
+      redirect_to board_path(@board)
+    else
+      render :new
+    end
+  end
+
   def index
     @boards = Board.all
   end
