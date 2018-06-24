@@ -1,1 +1,28 @@
 <!-- application/welcome - root -->
+<% if !logged_in? %>
+  <div class="callout large primary">
+    <div class="text-center">
+      <h1>Messaging Board</h1>
+      <h2 class="subheader">Welcome, please sign up or log in.</h2>
+    </div>
+  </div>
+
+<% else %>
+  <div class="callout large primary">
+    <div class="text-center">
+      <h1>Welcome <%= current_user.name.empty? ? current_user.username : current_user.name %>!</h1>
+    </div>
+  </div>
+
+  <article class="grid-container">
+    <div class="grid-x align-center">
+      <div class="cell medium-8 text-center">
+        <h4 class="subheader"><a class="button button-rounded-hover" href=<%= boards_path %>>View All Boards</a></h4>
+        <h2 class="subheader">or</h2><br>
+        <h4 class="subheader"><a class="button button-rounded-hover" href=<%= new_board_path %>>Create a New Board</a></h4>
+      </div>
+    </div>
+  </article>
+
+
+<% end %>
