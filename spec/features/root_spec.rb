@@ -18,7 +18,7 @@ describe "Feature Test: Root", :type => :feature do
 
     it "it welcomes the user by name/username" do
       expect(page).to have_content("Welcome Aspen James!")
-      click_button("Log Out")
+      click_link("Log Out")
       visit signup_path
       user_2_signup
       expect(page).to have_content("Welcome k_law!")
