@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def update
     set_user
     check_user
-    if @user.update(user_params(:name, :username, :email))
+    if @user.update(user_params(:name, :username, :email, :password))
       redirect_to user_path(@user)
     else
       render :edit
