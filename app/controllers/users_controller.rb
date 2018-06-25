@@ -55,7 +55,7 @@ class UsersController < ApplicationController
       b.messages.each do |m|
         m.destroy
       end
-      b.destory
+      b.destroy
     end
     session.clear
     flash[:notice] = "User profile successfully deleted"
