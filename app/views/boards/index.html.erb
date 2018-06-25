@@ -16,7 +16,7 @@
       <div class="blog-post">
         <h3><%= board.topic %></h3>
         <% board.messages.limit(2).each do |message| %>
-          <p><strong><%= message.user.username %></strong> - <%= message.content %></p>
+          <p><strong><%= link_to message.user.username, user_path(message.user) %></strong> - <%= message.content %></p>
         <% end %>
         <h4><a class="button button-rounded-hover" href=<%= board_path(board) %>>View Board</a></h4>
       </div>
