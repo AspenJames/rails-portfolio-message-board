@@ -147,3 +147,25 @@ describe "Feature Test: User Show", :type => :feature do
     expect(page).to have_link("Delete Profile", :href => delete_user_path(1))
   end
 end
+
+describe "Feature Test: User Delete", :type => :feature do
+  before(:each) do
+    visit signup_path
+    user_signup # defined in login_helper.rb
+    click_link("Profile")
+  end
+
+  it "renders a confirmation page before deletion" do
+    click_link("Delete Profile")
+    expect(current_path).to eq(delete_user_path(1))
+    expect(page).to have_content("Deleting your profile will delete all boards and messages you have created. This cannot be undone.")
+    expect(page).to have_button("Confirm Deletion")
+  end
+
+  it "allows a user to delete their profile and clears the sessions hash" do
+    click_link("Delete Profile")
+    click_button("Confirm Deletion")
+    expect(current_path).to eq(root_path)
+    expect(page.get_rack_session.has_key?('user_id')).to_not be true
+  end
+end
