@@ -7,6 +7,10 @@
       <h1><%= @user.username %></h1>
     <% end %>
     <h2 class="subheader">Your Active Boards</h2>
+    <% if current_user == @user %>
+      <h4 class="subheader"><%= link_to "Edit Profile", edit_user_path(@user) %></h4>
+      <h4 class="subheader"><%= link_to "Delete Profile", delete_user_path(@user) %></h4>
+    <% end %>
   </div>
 </div>
 
