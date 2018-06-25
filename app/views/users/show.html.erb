@@ -6,7 +6,7 @@
     <% else %>
       <h1><%= @user.username %></h1>
     <% end %>
-    <h2 class="subheader">Your Active Boards</h2>
+    <h2 class="subheader">Active Boards</h2>
     <% if current_user == @user %>
       <h4 class="subheader"><%= link_to "Edit Profile", edit_user_path(@user) %></h4>
       <h4 class="subheader"><%= link_to "Delete Profile", delete_user_path(@user) %></h4>
@@ -19,9 +19,9 @@
     <% @user.boards.each do |board| %>
     <div class="cell medium-8">
       <div class="blog-post">
-        <h3><%= board.topic %></h3>
+        <h3><%= link_to board.topic, board_path(board) %></h3>
         <% board.messages.limit(2).each do |message| %>
-          <p><strong><%= message.user.username %></strong> - <%= message.content %></p>
+          <p><strong><%= link_to message.user.username, user_path(message.user) %></strong> - <%= message.content %></p>
         <% end %>
         <h4><a class="button button-rounded-hover" href=<%= board_path(board) %>>View all...</a></h4>
       </div>
