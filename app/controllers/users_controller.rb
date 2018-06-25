@@ -21,6 +21,24 @@ class UsersController < ApplicationController
 
   def delete
     set_user
+    check_user
+  end
+
+  def destroy
+    set_user
+    check_user
+    @user.messages.each do |m|
+      m.destroy
+    end
+    @user.created_boards.first.each do |b|
+      b.messages.each do |m|
+        m.destroy
+      end
+      b.destory
+    end
+    session.clear
+    flash[:notice] = "User profile successfully deleted"
+    redirect_to root_path
   end
 
   private
@@ -31,6 +49,13 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def check_user
+    if current_user != @user
+      flash[:alert] = "You are not authorized to edit or delete this user profile"
+      redirect_to user_path(@user)
+    end
   end
 
 end
