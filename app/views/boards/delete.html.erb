@@ -1,1 +1,16 @@
 <!-- boards/delete -->
+<div class="callout large primary">
+  <div class="text-center">
+    <h1><%= @board.topic %></h1>
+    <h2 class="subheader">Created by <%= @board.creator.name || @board.creator.username %></h2>
+  </div>
+</div>
+
+<div class="grid-x align-center">
+  <div class="cell medium-8 text-center">
+    <h2 class="delete-confirm">Deleting this board will also delete all user's messages from this board. This cannot be undone.</h2>
+    <%= form_tag board_path(@board), :method => "DELETE" do %>
+      <h4><%= button_tag "Confirm Deletion", :type => "submit", :class => "button button-rounded-hover" %></h4>
+    <% end %>
+  </div>
+</div>

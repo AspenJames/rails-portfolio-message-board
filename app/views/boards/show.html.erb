@@ -5,6 +5,7 @@
     <h2 class="subheader">Created by <%= @board.creator.name || @board.creator.username %></h2>
     <% if current_user == @board.creator %>
       <h4 class="subheader"><%= link_to "Edit Board", edit_board_path(@board) %></h4>
+      <h4 class="subheader"><%= link_to "Delete Board", delete_board_path(@board) %></h4>
     <% end %>
   </div>
 </div>
