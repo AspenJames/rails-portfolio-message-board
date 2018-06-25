@@ -21,7 +21,7 @@
     <% @board.messages.reject{|m| m.id.nil?}.each do |message| %>
     <div class="cell medium-8">
       <div class="blog-post">
-        <h3><%= message.user.username %></h3>
+        <h3><%= link_to message.user.username, user_path(message.user) %></h3>
         <p><%= message.content %></p>
         <h4><a class="button button-rounded-hover" href= <%= board_message_path(@board, message) %>>Show Message</a></h4>
       </div>

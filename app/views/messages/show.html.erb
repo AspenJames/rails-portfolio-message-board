@@ -1,7 +1,7 @@
 <!-- messages/show -->
 <div class="callout large primary">
   <div class="text-center">
-    <h1><%= @board.topic %></h1>
+    <h1><%= link_to @board.topic, board_path(@board) %></h1>
     <% if @message.created_at != @message.updated_at %>
       <h2 class="subheader">Updated <%= @message.time_updated %></h2>
     <% else %>
