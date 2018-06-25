@@ -19,9 +19,7 @@
       <div class="blog-post">
         <h3><%= message.user.username %></h3>
         <p><%= message.content %></p>
-        <% if current_user == message.user %>
-          <h4><a class="button button-rounded-hover" href= <%= edit_board_message_path(@board, message) %>>Edit Message...</a></h4>
-        <% end %>
+        <h4><a class="button button-rounded-hover" href= <%= board_message_path(@board, message) %>>Show Message</a></h4>
       </div>
     </div>
     <% end %>
