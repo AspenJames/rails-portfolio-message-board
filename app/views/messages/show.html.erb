@@ -17,7 +17,7 @@
         <% if flash[:alert] %>
           <p class="error_message"><%= flash[:alert] %></p>
         <% end %>
-        <h3><%= @message.user.username %>:</h3>
+        <h3><%= link_to @message.user.username, user_path(@message.user) %>:</h3>
         <p><%= @message.content %></p>
         <% if current_user == @message.user %>
           <h4><a class="button button-rounded-hover" href= <%= edit_board_message_path(@board, @message) %>>Edit Message</a></h4>
