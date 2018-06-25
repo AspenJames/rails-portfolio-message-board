@@ -59,3 +59,23 @@ describe "Feature Test: Message Edit", :type => :feature do
     expect(page).to have_css("div.field_with_errors")
   end
 end
+
+describe "Feature Test: Message delete", :type => :feature do
+  before(:each) do
+    create_data # defined in boards_helper.rb
+    visit login_path
+    aspen_login # defined in login_helper.rb
+  end
+
+  it "allows an authorized user to delete their own message" do
+    visit board_message_path(@coffee_board, @message1)
+    click_button("Delete Message")
+    expect(current_path).to eq(board_path(@coffee_board))
+    expect(page).not_to have_content(@message1.content)
+  end
+
+  it "does not allow a user to delete another's post" do
+    visit board_message_path(@coffee_board, @message2)
+    expect(page).not_to have_button("Delete Message")
+  end
+end
