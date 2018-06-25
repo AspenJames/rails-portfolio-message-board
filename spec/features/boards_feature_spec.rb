@@ -165,5 +165,32 @@ describe "Feature Test: Board Edit", :type => :feature do
     expect(current_path).to eq(board_path(@lunch_board))
     expect(page).to have_content("I'm Hungry")
   end
+end
 
+describe "Feature Test: Board Delete", :type => :feature do
+  before(:each) do
+    create_data # defined in support/boards_helper.rb
+    visit login_path
+    aspen_login
+  end
+
+  it "displays a delete button on a user's board show page" do
+    visit board_path(@coffee_board)
+    expect(page).to have_link("Delete Board")
+  end
+
+  it "displays a warning message when delete link is clicked" do
+    visit board_path(@coffee_board)
+    click_link("Delete Board")
+    expect(current_path).to eq(delete_board_path(@coffee_board))
+    expect(page).to have_content("Deleting this board will also delete all user's messages from this board. This cannot be undone.")
+  end
+
+  it "allows a user to delete their own board" do
+    visit board_path(@coffee_board)
+    click_link("Delete Board")
+    click_button("Confirm Deletion")
+    expect(current_path).to eq(boards_path)
+    expect(page).not_to have_content(@coffee_board.topic)
+  end
 end
