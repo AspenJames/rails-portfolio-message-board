@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   # failed comment attempt
   get '/boards/:id/messages' => 'boards#show'
 
+  # this renders a confirmation page before deleting a board
+  get '/boards/:id/delete' => 'boards#delete', :as => "delete_board"
+
   get '/login' => 'sessions#new', :as => "login"
   post '/login' => 'sessions#create'
 

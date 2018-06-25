@@ -34,6 +34,10 @@ class BoardsController < ApplicationController
     redirect_to board_path(@board)
   end
 
+  def delete
+    set_board
+  end
+
   private
 
   def set_board
