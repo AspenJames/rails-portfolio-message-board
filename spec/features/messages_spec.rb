@@ -47,7 +47,7 @@ describe "Feature Test: Message Edit", :type => :feature do
     visit edit_board_message_path(@coffee_board, @message1)
     fill_in("message[content]", :with => "Edited message Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
     click_button("Update Message")
-    expect(page).to eq(board_message_path(@coffee_board, @message1))
+    expect(current_path).to eq(board_message_path(@coffee_board, @message1))
     expect(page).to have_content("Edited message Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
   end
 
