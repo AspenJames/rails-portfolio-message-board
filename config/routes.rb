@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root 'application#welcome'
 
-  resources :users, :only => [:show, :edit, :update, :destory]
+  resources :users, :only => [:show, :edit, :update, :destroy]
   get '/signup' => 'users#new', :as => "signup"
   post '/signup' => 'users#create'
   # this renders a confirmation page before deleting a user
