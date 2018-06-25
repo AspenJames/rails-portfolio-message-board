@@ -7,6 +7,7 @@ class BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params(:topic, :created_by))
+    @board.messages.build(:content => params[:message][:content], :user_id => current_user.id) unless params[:message][:content].empty?
     if @board.save
       redirect_to board_path(@board)
     else
