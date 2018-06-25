@@ -133,7 +133,17 @@ describe "Feature Test: User Show", :type => :feature do
     expect(page).to have_content("k_law")
   end
 
+  it "shows a link to edit the user's profile" do
+    visit '/login'
+    aspen_login
+    click_link("Profile")
+    expect(page).to have_link("Edit Profile", :href => edit_user_path(1))
+  end
 
-
-
+  it "shows a link to delete the user's profile" do
+    visit '/login'
+    aspen_login
+    click_link("Profile")
+    expect(page).to have_link("Delete Profile", :href => delete_user_path(1))
+  end
 end
