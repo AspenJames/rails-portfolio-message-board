@@ -1,7 +1,7 @@
 <!-- users/show -->
 <div class="callout large primary">
   <div class="text-center">
-    <% if !@user.name.empty? %>
+    <% if @user.name && !@user.name.empty? %>
       <h1><%= @user.name %></h1>
     <% else %>
       <h1><%= @user.username %></h1>
