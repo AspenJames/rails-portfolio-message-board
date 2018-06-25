@@ -21,7 +21,9 @@
         <p><%= @message.content %></p>
         <% if current_user == @message.user %>
           <h4><a class="button button-rounded-hover" href= <%= edit_board_message_path(@board, @message) %>>Edit Message</a></h4>
-          <h4><a class="button button-rounded-hover" href= <%= edit_board_message_path(@board, @message) %>>Delete Message</a></h4>
+          <%= form_tag(board_message_path(@board, @message), :method => "DELETE") do %>
+            <h4><%= button_tag "Delete Message", :type => "submit", :class => "button button-rounded-hover" %></h4>
+          <% end %>
         <% end %>
       </div>
     </div>
