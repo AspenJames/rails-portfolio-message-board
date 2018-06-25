@@ -163,6 +163,7 @@ describe "Feature Test: User Edit", :type => :feature do
 
   it "updates a user's profile with valid parameters" do
     fill_in("user[name]", :with => "Someone Else")
+    fill_in("user[password]", :with => "password")
     click_button("Update Profile")
     expect(current_path).to eq(user_path(1))
     expect(page).to have_content("Someone Else")
@@ -172,6 +173,7 @@ describe "Feature Test: User Edit", :type => :feature do
 
   it "re-renders the form with error messages with invalid parameters" do
     fill_in("user[username]", :with => "   ")
+    fill_in("user[password]", :with => "password")
     click_button("Update Profile")
     expect(page).to have_content("Username can't be blank")
     expect(page).to have_css("div.field_with_errors")
@@ -179,8 +181,17 @@ describe "Feature Test: User Edit", :type => :feature do
 
   it "does not update the user with invalid parameters" do
     fill_in("user[username]", :with => "   ")
+    fill_in("user[password]", :with => "password")
     click_button("Update Profile")
     expect(User.find(1).username).to eq("ajames")
+  end
+
+  it "does not update with an incorrect password" do
+    fill_in("user[name]", :with => "Someone Else")
+    fill_in("user[password]", :with => "not_password")
+    click_button("Update Profile")
+    expect(page).to have_content("Incorrect password")
+    expect(current_path).to eq(edit_user_path(1))  
   end
 
 end
