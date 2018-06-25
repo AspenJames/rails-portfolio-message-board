@@ -80,7 +80,7 @@ describe "Feature Test: Boards Index", :type => :feature do
     end
 
     it "displays a link to view the full board" do
-      expect(page).to have_link("View all...", :href => board_path(@lunch_board))
+      expect(page).to have_link("View Board", :href => board_path(@lunch_board))
     end
   end
 
