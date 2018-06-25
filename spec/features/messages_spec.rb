@@ -71,6 +71,7 @@ describe "Feature Test: Message delete", :type => :feature do
     visit board_message_path(@coffee_board, @message1)
     click_button("Delete Message")
     expect(current_path).to eq(board_path(@coffee_board))
+    expect(page).to have_content("Message successfully deleted")
     expect(page).not_to have_content(@message1.content)
   end
 
