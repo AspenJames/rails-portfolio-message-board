@@ -148,6 +148,43 @@ describe "Feature Test: User Show", :type => :feature do
   end
 end
 
+describe "Feature Test: User Edit", :type => :feature do
+  before(:each) do
+    visit signup_path
+    user_signup #defined in login_helper.rb
+    click_link("Profile")
+    click_link("Edit Profile")
+  end
+
+  it "renders an edit form" do
+    expect(current_path).to eq(edit_user_path(1))
+    expect(page).todo have_css("form")
+  end
+
+  it "updates a user's profile with valid parameters" do
+    fill_in("user[name]", :with => "Someone Else")
+    click_button("Update Profile")
+    expect(current_path).to eq(user_path(1))
+    expect(page).to have_content("Someone Else")
+    expect(page).not_to have_content("Aspen James")
+    expect(User.find(1).name).to eq("Someone Else")
+  end
+
+  it "re-renders the form with error messages with invalid parameters" do
+    fill_in("user[username]", :with => "   ")
+    click_button("Edit Profile")
+    expect(page).to have_content("Username can't be blank")
+    expect(page).to have_css("div.field_with_errors")
+  end
+
+  it "does not update the user with invalid parameters" do
+    fill_in("user[username]", :with => "   ")
+    click_button("Edit Profile")
+    expect(User.find(1).username).to eq("ajames")
+  end
+
+end
+
 describe "Feature Test: User Delete", :type => :feature do
   before(:each) do
     visit signup_path
