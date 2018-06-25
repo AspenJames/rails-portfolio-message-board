@@ -1,1 +1,16 @@
 <!-- users/delete -->
+<div class="callout large primary">
+  <div class="text-center">
+      <h1><%= @user.name || @user.username %></h1>
+    <h2 class="subheader">Are you sure?</h2>
+  </div>
+</div>
+
+<div class="grid-x align-center">
+  <div class="cell medium-8 text-center">
+    <h2 class="delete-confirm">Deleting your profile will delete all boards and messages you have created. This cannot be undone.</h2>
+    <%= form_tag user_path(@user), :method => "DELETE" do %>
+      <h4><%= button_tag "Confirm Deletion", :type => "submit", :class => "button button-rounded-hover" %></h4>
+    <% end %>
+  </div>
+</div>
