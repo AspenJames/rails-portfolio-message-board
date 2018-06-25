@@ -158,7 +158,7 @@ describe "Feature Test: User Edit", :type => :feature do
 
   it "renders an edit form" do
     expect(current_path).to eq(edit_user_path(1))
-    expect(page).todo have_css("form")
+    expect(page).to have_css("form")
   end
 
   it "updates a user's profile with valid parameters" do
@@ -172,14 +172,14 @@ describe "Feature Test: User Edit", :type => :feature do
 
   it "re-renders the form with error messages with invalid parameters" do
     fill_in("user[username]", :with => "   ")
-    click_button("Edit Profile")
+    click_button("Update Profile")
     expect(page).to have_content("Username can't be blank")
     expect(page).to have_css("div.field_with_errors")
   end
 
   it "does not update the user with invalid parameters" do
     fill_in("user[username]", :with => "   ")
-    click_button("Edit Profile")
+    click_button("Update Profile")
     expect(User.find(1).username).to eq("ajames")
   end
 
