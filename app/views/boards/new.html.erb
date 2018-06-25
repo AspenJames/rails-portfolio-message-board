@@ -14,9 +14,12 @@
       <%= form_for @board, :html => {:class => "callout text-center"} do |f| %>
         <h2>Set Board Topic</h2>
         <div class="floated-label-wrapper">
-          <%= f.label :topic, :class => "show" %>
           <%= f.text_field :topic %>
           <%= f.hidden_field :created_by, :value => current_user.id %>
+        </div>
+        <h2>Post an Optional Message</h2>
+        <div class="floated-label-wrapper">
+          <%= text_area_tag "message[content]", nil %>
         </div>
         <%= f.submit :class => "button expanded", :value => "Create Board" %>
       <% end %>
