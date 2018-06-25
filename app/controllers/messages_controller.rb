@@ -16,6 +16,17 @@ class MessagesController < ApplicationController
 
   def edit
     set_board_and_message
+    check_user
+  end
+
+  def update
+    set_board_and_message
+    check_user
+    if @message.update(message_params)
+      redirect_to board_message_path(@board, @message)
+    else
+      render :edit
+    end
   end
 
   private
@@ -27,6 +38,13 @@ class MessagesController < ApplicationController
   def set_board_and_message
     @board = Board.find(params[:board_id])
     @message = Message.find(params[:id])
+  end
+
+  def check_user
+    if current_user != @message.user
+      flash[:alert] = "You are not authorized to edit this message"
+      redirect_to board_message_path(@board, @message)
+    end
   end
 
 end
