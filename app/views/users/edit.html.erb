@@ -1,1 +1,26 @@
 <!-- users/edit -->
+<div class="callout large primary">
+  <div class="text-center">
+    <% if @user.name && !@user.name.empty? %>
+      <h1><%= @user.name %></h1>
+    <% else %>
+      <h1><%= @user.username %></h1>
+    <% end %>
+  </div>
+</div>
+
+<article class="grid-container">
+  <div class="grid-x align-center">
+    <div class="cell medium-8">
+      <%= form_for @user, :html => {:class => "callout text-center"} do |f| %>
+        <h2>Edit Profile</h2>
+        <div class="floated-label-wrapper">
+          <%= f.text_field :name %>
+          <%= f.text_field :username %>
+          <%= f.text_field :email %>
+        </div>
+        <%= f.submit :class => "button expanded", :value => "Update Profile" %>
+      <% end %>
+    </div>
+  </div>
+</article>
