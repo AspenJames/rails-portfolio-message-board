@@ -14,6 +14,9 @@
     <div class="cell medium-8">
       <%= form_for @user, :html => {:class => "callout text-center"} do |f| %>
         <h2>Edit Profile</h2>
+        <% @user.errors.full_messages.each do |message| %>
+          <p class="error_message"><%= message %></p>
+        <% end %>
         <div class="floated-label-wrapper">
           <%= f.text_field :name %>
           <%= f.text_field :username %>
