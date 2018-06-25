@@ -1,1 +1,24 @@
 <!-- messages/show -->
+<div class="callout large primary">
+  <div class="text-center">
+    <h1><%= @board.topic %></h1>
+    <% if @message.created_at != @message.updated_at %>
+      <h2 class="subheader">Updated <%= @message.time_updated %></h2>
+    <% else %>
+      <h2 class="subheader">Posted <%= @message.time_posted %></h2>
+    <% end %>
+  </div>
+</div>
+
+<article class="grid-container">
+  <div class="grid-x align-center">
+    <div class="cell medium-8">
+      <div class="blog-post text-center">
+        <h3><%= @message.user.username %>:</h3>
+        <p><%= @message.content %></p>
+        <h4><a class="button button-rounded-hover" href= <%= edit_board_message_path(@board, @message) %>>Edit Message...</a></h4>
+        <h4><a class="button button-rounded-hover" href= <%= edit_board_message_path(@board, @message) %>>Delete Message...</a></h4>
+      </div>
+    </div>
+  </div>
+</article>
