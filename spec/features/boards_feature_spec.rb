@@ -35,6 +35,13 @@ describe "Feature Test: Boards New", :type => :feature do
       expect(page).to have_css("div.field_with_errors")
       expect(page).to have_content("Topic can't be blank")
     end
+
+    it "lets a user submit an optional message upon board creation" do
+      fill_in("board[topic]", :with => "This is a new board!")
+      fill_in("message[content]", :with => "This message was created at the same time as the board!")
+      click_button("Create Board")
+      expect(page).to have_content("This message was created at the same time as the board!")
+    end
   end
 
 end
