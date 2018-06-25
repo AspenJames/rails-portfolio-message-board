@@ -1,1 +1,31 @@
 <!-- messages/edit -->
+<div class="callout large primary">
+  <div class="text-center">
+    <h1><%= @board.topic %></h1>
+    <% if @message.created_at != @message.updated_at %>
+      <h2 class="subheader">Updated <%= @message.time_updated %></h2>
+    <% else %>
+      <h2 class="subheader">Posted <%= @message.time_posted %></h2>
+    <% end %>
+  </div>
+</div>
+
+<article class="grid-container">
+  <div class="gridx align-center">
+    <%= form_for @message, :url => board_message_path(@board, @message), :method => "PATCH", :class => "comment-section-form" do |f| %>
+      <div class="comment-section-box">
+        <div class="row">
+          <div class="small-12 column">
+            <h4>Message by <%= @message.user.name || @message.user.username %></h4>
+            <% @message.errors.full_messages.each do |error| %>
+              <p class="error_message"><%= error %></p>
+            <% end %>
+            <%= f.text_area :content %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.submit :class => "button expanded", :value => "Update Message"%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</article>
