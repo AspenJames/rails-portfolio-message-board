@@ -236,5 +236,12 @@
 
 
 p.error_message {
-  color: #ff0000;
+  color: #f00;
+}
+
+p.notice {
+  color: #3c3;
+  font-size: 2em;
+  text-align: center;
+  padding-bottom: 20px;
 }
