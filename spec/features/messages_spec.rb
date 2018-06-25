@@ -40,7 +40,7 @@ describe "Feature Test: Message Edit", :type => :feature do
 
   it "renders an edit form if the user created the message" do
     visit edit_board_message_path(@coffee_board, @message1)
-    expect(page).to have_field("message[content]", :value => @message1.content)
+    expect(page).to have_field("message[content]", :text => @message1.content)
   end
 
   it "successfully updates the message with valid data" do
