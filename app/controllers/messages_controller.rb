@@ -29,6 +29,14 @@ class MessagesController < ApplicationController
     end
   end
 
+  def destroy
+    set_board_and_message
+    check_user
+    @message.destory
+    flash[:notice] = "Message successfully deleted"
+    redirect_to board_path(@board)
+  end
+
   private
 
   def message_params
