@@ -27,10 +27,16 @@ class UsersController < ApplicationController
   def update
     set_user
     check_user
-    if @user.update(user_params(:name, :username, :email, :password))
-      redirect_to user_path(@user)
+    if @user.authenticate(params[:user][:password])
+      if @user.update(user_params(:name, :username, :email, :password))
+        flash[:notice] = "Profile successfully updated"
+        redirect_to user_path(@user)
+      else
+        render :edit
+      end
     else
-      render :edit
+      flash[:alert] = "Incorrect password"
+      redirect_to edit_user_path(@user)
     end
   end
 
