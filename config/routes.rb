@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :users, :only => [:show, :edit, :update, :destory]
   get '/signup' => 'users#new', :as => "signup"
   post '/signup' => 'users#create'
+  # this renders a confirmation page before deleting a user
+  get '/users/:id/delete' => 'users#delete', :as => "delete_user"
 
   resources :boards do
     resources :messages, :except => [:index, :new]

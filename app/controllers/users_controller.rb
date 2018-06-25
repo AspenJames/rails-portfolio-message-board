@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     set_user
   end
 
+  def delete
+    set_user
+  end
+
   private
 
   def user_params
