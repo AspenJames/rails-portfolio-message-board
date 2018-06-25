@@ -26,16 +26,19 @@ class BoardsController < ApplicationController
 
   def edit
     set_board
+    check_user
   end
 
   def update
     set_board
+    check_user
     @board.update(board_params(:topic))
     redirect_to board_path(@board)
   end
 
   def delete
     set_board
+    check_user
   end
 
   private
@@ -46,6 +49,13 @@ class BoardsController < ApplicationController
 
   def board_params(*args)
     params.require(:board).permit(*args)
+  end
+
+  def check_user
+    if @board.creator != current_user
+      flash[:alert] = "You are not authorized to edit or delete this board"
+      redirect_to board_path(@board)
+    end
   end
 
 end
