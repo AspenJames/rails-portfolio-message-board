@@ -41,6 +41,17 @@ class BoardsController < ApplicationController
     check_user
   end
 
+  def destroy
+    set_board
+    check_user
+    @board.messages.each do |m|
+      m.destroy
+    end
+    @board.destroy
+    flash[:notice] = "Board successfully deleted"
+    redirect_to boards_path
+  end
+
   private
 
   def set_board
