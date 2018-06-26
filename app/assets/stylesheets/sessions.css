@@ -237,6 +237,7 @@
 
 p.error_message {
   color: #f00;
+  font-size: 2em;
 }
 
 p.notice {
