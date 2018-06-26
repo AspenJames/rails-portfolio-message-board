@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :require_login
 
   def create
     @board = Board.find(params[:board_id])
@@ -31,7 +32,6 @@ class MessagesController < ApplicationController
 
   def destroy
     set_board_and_message
-    check_user
     @message.destroy
     flash[:notice] = "Message successfully deleted"
     redirect_to board_path(@board)
