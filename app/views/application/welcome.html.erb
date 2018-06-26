@@ -2,9 +2,7 @@
 <% if !logged_in? %>
   <div class="callout large primary">
     <div class="text-center">
-      <% if flash[:notice] %>
-        <p class="notice"><%= flash[:notice] %></p>
-      <% end %>
+      <%= flash_notice %>
       <h1>Messaging Board</h1>
       <h2 class="subheader">Welcome, please sign up or log in.</h2>
     </div>

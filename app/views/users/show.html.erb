@@ -6,12 +6,8 @@
     <% else %>
       <h1><%= @user.username %></h1>
     <% end %>
-    <% if flash[:notice] %>
-      <p class="notice"><%= flash[:notice] %></p>
-    <% end %>
-    <% if flash[:alert] %>
-      <p class="error_message" style="font-size:2em;"><%= flash[:alert] %></p>
-    <% end %>
+    <%= flash_notice %>
+    <%= flash_alert %>
     <h2 class="subheader">Active Boards</h2>
     <% if current_user == @user %>
       <h4 class="subheader"><%= link_to "Edit Profile", edit_user_path(@user) %></h4>

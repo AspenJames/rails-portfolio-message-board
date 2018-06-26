@@ -8,9 +8,7 @@
 
 <article class="grid-container">
   <div class="grid-x align-center">
-    <% if flash[:notice] %>
-      <p class="notice"><%= flash[:notice] %></p>
-    <% end %>
+    <%= flash_notice %>
     <div class="cell medium-8">
       <div class="comment-section-box">
         <%= form_tag boards_path, :method => "GET" do %>

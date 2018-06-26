@@ -14,9 +14,7 @@
   <div class="grid-x align-center">
     <div class="cell medium-8">
       <div class="blog-post text-center">
-        <% if flash[:alert] %>
-          <p class="error_message"><%= flash[:alert] %></p>
-        <% end %>
+        <%= flash_alert %>
         <h3><%= link_to @message.user.username, user_path(@message.user) %>:</h3>
         <p><%= @message.content %></p>
         <% if current_user == @message.user %>

@@ -14,8 +14,7 @@
     <div class="cell medium-8">
       <%= form_for @user, :html => {:class => "callout text-center"} do |f| %>
         <h2>Edit Profile</h2>
-        <% if flash[:alert] %>
-          <p class="error_message" style="font-size:2em;"><%= flash[:alert] %></p>
+        <%= flash_alert %>
         <% end %>
         <% @user.errors.full_messages.each do |message| %>
           <p class="error_message"><%= message %></p>
