@@ -47,17 +47,18 @@ class UsersController < ApplicationController
 
   def destroy
     set_user
-    check_user
+    # the iterator below destroys each of a user's messages
     @user.messages.each do |m|
       m.destroy
     end
     @user.created_boards.first.each do |b|
       b.messages.each do |m|
-        m.destroy
+        m.destroy # destroys all messages on boards created by this user
       end
-      b.destroy
+      b.destroy # destroys the boards created by this user
     end
-    session.clear
+    session.clear # clears the session - logs user out
+    @user.destroy # actually deletes the user
     flash[:notice] = "User profile successfully deleted"
     redirect_to root_path
   end
