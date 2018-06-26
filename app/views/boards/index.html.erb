@@ -16,7 +16,7 @@
         <%= form_tag boards_path, :method => "GET" do %>
           <div class="floated-label-wrapper">
             <h5 class="dropdown-label">Sort by:</h5>
-            <%= select_tag "dropdown-menu", raw("<option>Default</option><option>Alphabetical</option><option>Recently Updated</option>") %>
+            <%= select_tag "sort", raw("<option>Default</option><option>Alphabetical</option><option>Recently Updated</option>") %>
           </div>
           <div class="floated-label-wrapper">
             <%= submit_tag "Sort!", :class => "button expanded" %>
