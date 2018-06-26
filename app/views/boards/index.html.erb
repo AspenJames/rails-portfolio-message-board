@@ -11,6 +11,19 @@
     <% if flash[:notice] %>
       <p class="notice"><%= flash[:notice] %></p>
     <% end %>
+    <div class="cell medium-8">
+      <div class="comment-section-box">
+        <%= form_tag boards_path, :method => "GET" do %>
+          <div class="floated-label-wrapper">
+            <h5 class="dropdown-label">Sort by:</h5>
+            <%= select_tag "dropdown-menu", raw("<option>Default</option><option>Alphabetical</option><option>Recently Updated</option>") %>
+          </div>
+          <div class="floated-label-wrapper">
+            <%= submit_tag "Sort!", :class => "button expanded" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <% @boards.each do |board| %>
     <div class="cell medium-8">
       <div class="blog-post">
