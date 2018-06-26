@@ -16,7 +16,13 @@ class BoardsController < ApplicationController
   end
 
   def index
-    @boards = Board.all
+    if params[:sort] == "Alphabetical"
+      @boards = Board.sort_alphabetical
+    elsif params[:sort] == "Recently Updated"
+      @boards = Board.sort_last_updated
+    else
+      @boards = Board.all
+    end
   end
 
   def show
