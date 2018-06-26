@@ -10,7 +10,7 @@
       <p class="notice"><%= flash[:notice] %></p>
     <% end %>
     <% if flash[:alert] %>
-      <p class="error_message"><%= flash[:alert] %></p>
+      <p class="error_message" style="font-size:2em;"><%= flash[:alert] %></p>
     <% end %>
     <h2 class="subheader">Active Boards</h2>
     <% if current_user == @user %>
