@@ -7,17 +7,17 @@ Specs:
 - [x] Include at least one has_many through relationship :user has_many :boards, :through => :messages, vice versa
 - [x] The "through" part of the has_many through includes at least one user submittable attribute -- message.content is submitted by the user
 - [x] Include reasonable validations for simple model objects -- User, Board, and Message objects all have validations
-- [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
-- [ ] Include signup (how e.g. Devise)
-- [ ] Include login (how e.g. Devise)
-- [ ] Include logout (how e.g. Devise)
-- [ ] Include third party signup/login (how e.g. Devise/OmniAuth)
-- [ ] Include nested resource show or index (URL e.g. users/2/recipes)
+- [x] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes) -- Board.sort methods defined in models/board.rb
+- [x] Include signup (how e.g. Devise) -- users#new, users#create
+- [x] Include login (how e.g. Devise) -- sessions#new, sessions#create
+- [x] Include logout (how e.g. Devise) -- sessions#destroy
+- [x] Include third party signup/login (how e.g. Devise/OmniAuth) -- OAuth Github and Twitter options
+- [x] Include nested resource show or index (URL e.g. users/2/recipes) -- messages are nested within boards
 - [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
-- [ ] Include form display of validation errors (form URL e.g. /recipes/new)
+- [x] Include form display of validation errors (form URL e.g. /recipes/new) -- all forms have validation error messages and styling.
 
 Confirm:
 - [ ] The application is pretty DRY
 - [ ] Limited logic in controllers
-- [ ] Views use helper methods if appropriate
-- [ ] Views use partials if appropriate
+- [x] Views use helper methods if appropriate
+- [x] Views use partials if appropriate
