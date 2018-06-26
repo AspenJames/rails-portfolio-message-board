@@ -41,6 +41,7 @@ class UsersController < ApplicationController
   end
 
   def delete
+    # this displays a warning message to the user before deleting their profile
     set_user
     check_user
   end
