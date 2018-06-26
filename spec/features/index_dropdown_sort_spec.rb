@@ -16,6 +16,13 @@ describe "Feature Test: Dropdown Sort", :type => :feature do
     select("Alphabetical", :from => "sort")
     click_button("Sort!")
     expect(page).to have_css("article h3:nth-child(1)", :text => "Coffee Break")
-    expect(page).to have_css("article h3:nth-child(2)", :text => "Lunchtime!")
+  end
+
+  it "sorts the boards by last updated" do
+    @lunch_board.messages.build(:content => "Updated Message", :user_id => @aspen.id)
+    @lunch_board.save
+    select("Recently Updated", :from => "sort")
+    click_button("Sort!")
+    expect(page).to have_css("article h3:nth-child(1)", :text => "Lunchtime!")
   end
 end
