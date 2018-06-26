@@ -8,4 +8,8 @@ class Board < ApplicationRecord
     @creator ||= User.find(self.created_by)
   end
 
+  def self.sort_last_updated
+    all.joins(:messages).order("messages.updated_at DESC").uniq
+  end
+
 end
