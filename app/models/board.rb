@@ -12,4 +12,8 @@ class Board < ApplicationRecord
     all.joins(:messages).order("messages.updated_at DESC").uniq
   end
 
+  def self.sort_alphabetical
+    order("boards.topic ASC")
+  end
+
 end
