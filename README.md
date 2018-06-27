@@ -46,3 +46,13 @@ rake db:seed
 ```
 
 Now you're ready to start the server with `rails s` and navigate to [http://localhost:3000/](http://localhost:3000/)
+
+## License
+
+This project is licensed using the GNU General Public License, which may be viewed in the associated LICENSE file. 
+
+## Contributing
+
+You may contribute to this project by [submitting an issue](https://github.com/AspenJames/rails-portfolio-message-board/issues) or by submitting a pull request.
+
+All contributions are expected to follow the Code of Conduct outlined in CONTRIBUTING.md
