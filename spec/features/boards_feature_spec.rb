@@ -18,13 +18,16 @@ describe "Feature Test: Boards New", :type => :feature do
     it "renders a new board form" do
       expect(current_path).to eq(new_board_path)
       expect(page).to have_field("board[topic]")
+      expect(page).to have_field("board[description]")
     end
 
     it "creates a new board with proper input" do
       fill_in("board[topic]", :with => "This is a new board!")
+      fill_in("board[description]", :with => "New board description")
       click_button("Create Board")
       expect(current_path).to eq(board_path(1))
       expect(page).to have_content("This is a new board!")
+      expect(page).to have_content("New board description")
       expect(page).to have_content("Created by Aspen James")
     end
 
