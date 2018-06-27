@@ -2,6 +2,9 @@
 <div class="callout large primary">
   <div class="text-center">
     <h1><%= @board.topic %></h1>
+    <% if @board.description %>
+      <h3 class="subheader"><%= @board.description %></h3>
+    <% end %>
     <h2 class="subheader">Created by <%= @board.creator.name || @board.creator.username %></h2>
     <% if current_user == @board.creator %>
       <h4 class="subheader"><%= link_to "Edit Board", edit_board_path(@board) %></h4>
