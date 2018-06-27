@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
   end
 
   def create
-    @board = Board.new(board_params(:topic, :created_by))
+    @board = Board.new(board_params(:topic, :created_by, :description))
     @board.messages.build(:content => params[:message][:content], :user_id => current_user.id) unless params[:message][:content].empty?
     if @board.save
       redirect_to board_path(@board)
@@ -38,7 +38,7 @@ class BoardsController < ApplicationController
   def update
     set_board
     check_user
-    @board.update(board_params(:topic))
+    @board.update(board_params(:topic, :description))
     redirect_to board_path(@board)
   end
 
