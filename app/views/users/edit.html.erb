@@ -15,7 +15,6 @@
       <%= form_for @user, :html => {:class => "callout text-center"} do |f| %>
         <h2>Edit Profile</h2>
         <%= flash_alert %>
-        <% end %>
         <% @user.errors.full_messages.each do |message| %>
           <p class="error_message"><%= message %></p>
         <% end %>
