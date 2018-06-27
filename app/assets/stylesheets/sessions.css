@@ -240,6 +240,10 @@ p.error_message {
   font-size: 2em;
 }
 
+p.error_message_form {
+  color: #f00;
+}
+
 p.notice {
   color: #3c3;
   font-size: 2em;

@@ -6,7 +6,7 @@
         <h1 class="login-box-title">Sign up</h1>
         <% if @user.errors.any? %>
           <% @user.errors.full_messages.each do |error| %>
-            <p class="error_message"><%= error %></p>
+            <p class="error_message_form"><%= error %></p>
           <% end %>
         <% end %>
         <%= form_for(@user, :url => signup_path, :method => "POST") do |f| %>
