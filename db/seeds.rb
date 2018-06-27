@@ -19,17 +19,19 @@ User.create(
 )
 
 Board.create(
+  :topic => "Lunch Hour",
+  :topic => "Best spots to get lunch around the office"
+  :created_by => 2
+)
+
+Board.create(
   :topic => "Coffee Break",
   :created_by => 1
 )
 
 Board.create(
-  :topic => "Lunch Hour",
-  :created_by => 2
-)
-
-Board.create(
   :topic => "These are all break related",
+  :description => "Does anyone do any work around here?"
   :created_by => 3
 )
 
