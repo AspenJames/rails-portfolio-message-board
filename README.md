@@ -1,24 +1,48 @@
-# README
+# Rails Portfolio Project - Messaging Board App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a messaging board app built using Ruby on Rails.
 
-Things you may want to cover:
+## Ruby Version and Dependencies
 
-* Ruby version
+Built using Ruby version 2.3.7 - recommended to use [RVM](rvm.io) if you need to install this version. Dependencies can be found in the Gemfile and installed by executing `bundle install`
 
-* System dependencies
+Some of the Ruby Gems used in this project are:
+- sqlite3 for the database
+- bcrypt for securing passwords
+- omniauth for logging in via Twitter and GitHub
+- dotenv-rails to maintain environment variables outside of VC
 
-* Configuration
+## The Code
 
-* Database creation
+If you're familiar with how a Rails app is normally structured, you should have no problem following the code throughout the project.
+- Models are located in `app/models/`
+- Controllers in `app/controllers/`
+- Stylesheets in `app/assets/`
+- Helper Modules in `app/helpers`
+- Views in `app/views/`
+- Routes in `config/routes.rb`
+- Database migrations/schema/etc in `app/db/`
 
-* Database initialization
+There is some seed data in `db/seeds.rb` - feel free to use this or edit this file at your discretion.
 
-* How to run the test suite
+## Test Suite
 
-* Services (job queues, cache servers, search engines, etc.)
+Tests are written using RSpec and Capybara. You can find all relevant files in the `spec/` directory.
+To run the test suite, first initialize the database with `rake db:migrate && rake db:migrate RAILS_ENV=test`. Then you may run the tests with `bundle exec rspec --format documentation`
 
-* Deployment instructions
+## Setting Up Locally
 
-* ...
+To set up a version on your local machine, clone this repo and `cd` into the directory:
+```
+git clone https://github.com/AspenJames/rails-portfolio-message-board.git
+cd rails-portfolio-message-board
+```
+
+Once you're cloned and in the appropriate repo, execute `bundle install` to install all dependencies. Set up the database using the following commands:
+```
+rake db:migrate
+rake db:migrate RAILS_ENV=test
+rake db:seed
+```
+
+Now you're ready to start the server with `rails s` and navigate to [http://localhost:3000/](http://localhost:3000/)
