@@ -20,7 +20,7 @@ User.create(
 
 Board.create(
   :topic => "Lunch Hour",
-  :topic => "Best spots to get lunch around the office",
+  :description => "Best spots to get lunch around the office",
   :created_by => 2
 )
 
