@@ -59,7 +59,7 @@ class BoardsController < ApplicationController
   end
 
   def most_messages
-    @board = Board.first # change to scope method to select board with most messages
+    @board = Board.most_messages
     @message = Message.new
   end
 

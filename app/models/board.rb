@@ -16,4 +16,8 @@ class Board < ApplicationRecord
     order("boards.topic ASC")
   end
 
+  def self.most_messages
+    joins(:messages).group('boards.id').order('COUNT(messages.id) DESC').limit(1).first
+  end
+
 end
