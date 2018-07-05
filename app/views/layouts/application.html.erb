@@ -21,6 +21,7 @@
         <% if logged_in? %>
           <li><a class="underline-from-center" href= <%= user_path(current_user) %>>Profile</a></li>
           <li><a class="underline-from-center" href= <%= boards_path %>>Boards</a></li>
+          <li><a class="underline-from-center" href= <%= boards_most_popular_path %>>Most Popular Board</a></li>
           <li><a class="underline-from-center" href= <%= new_board_path %>>New Board</a></li>
           <li><a class="underline-from-center" href= <%= logout_path %>>Log Out</a></li>
         <% else %>
