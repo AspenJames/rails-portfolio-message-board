@@ -58,7 +58,7 @@ class BoardsController < ApplicationController
     redirect_to boards_path
   end
 
-  def most_messages
+  def most_popular
     @board = Board.most_messages
     @message = Message.new
   end

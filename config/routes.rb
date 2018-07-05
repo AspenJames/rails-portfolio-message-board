@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   # this renders a confirmation page before deleting a user
   get '/users/:id/delete' => 'users#delete', :as => "delete_user"
 
-  get '/boards/most_messages' => 'boards#most_messages'
-  
+  get '/boards/most_popular' => 'boards#most_popular'
+
   resources :boards do
     resources :messages, :except => [:index, :new]
   end
