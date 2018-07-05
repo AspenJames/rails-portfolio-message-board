@@ -1,0 +1,49 @@
+<div class="callout large primary">
+  <div class="text-center">
+    <h1><%= @board.topic %></h1>
+    <% if @board.description %>
+      <h3 class="subheader"><%= @board.description %></h3>
+    <% end %>
+    <h2 class="subheader">Created by <%= @board.creator.name || @board.creator.username %></h2>
+    <% if current_user == @board.creator %>
+      <h4 class="subheader"><%= link_to "Edit Board", edit_board_path(@board) %></h4>
+      <h4 class="subheader"><%= link_to "Delete Board", delete_board_path(@board) %></h4>
+    <% end %>
+  </div>
+</div>
+
+<article class="grid-container">
+  <div class="grid-x align-center">
+    <%= flash_alert %>
+    <%= flash_notice %>
+    <% @board.messages.reject{|m| m.id.nil?}.each do |message| %>
+    <div class="cell medium-8">
+      <div class="blog-post">
+        <h3><%= link_to message.user.username, user_path(message.user) %></h3>
+        <p><%= message.content %></p>
+        <h4><a class="button button-rounded-hover" href= <%= board_message_path(@board, message) %>>Show Message</a></h4>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <!-- new message form -->
+  <div class="gridx align-center">
+    <%= form_for @message, :url => board_messages_path(@board), :method => "POST", :class => "comment-section-form" do |f| %>
+      <div class="comment-section-box">
+        <div class="row">
+          <div class="small-12 column">
+            <h4>Post a Message</h4>
+            <% @message.errors.full_messages.each do |error| %>
+              <p class="error_message"><%= error %></p>
+            <% end %>
+            <%= f.text_area :content, :placeholder => "Your message here!" %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.submit :class => "button expanded", :value => "Post Message"%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</article>
