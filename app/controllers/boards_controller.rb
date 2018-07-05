@@ -58,6 +58,11 @@ class BoardsController < ApplicationController
     redirect_to boards_path
   end
 
+  def most_messages
+    @board = Board.first # change to scope method to select board with most messages
+    @message = Message.new
+  end
+
   private
 
   def set_board
