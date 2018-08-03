@@ -26,4 +26,8 @@ Rails.application.routes.draw do
 
   get '/logout' => 'sessions#destory', :as => 'logout'
 
+  ##### testing #####
+  get '/users' => 'users#index'
+  get '/messages' => 'messages#index'
+
 end

@@ -64,6 +64,10 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def index
+    render :json => User.all 
+  end
+
   private
 
   def user_params(*args)
