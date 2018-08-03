@@ -16,12 +16,17 @@ class BoardsController < ApplicationController
   end
 
   def index
-    if params[:sort] == "Alphabetical"
-      @boards = Board.sort_alphabetical
-    elsif params[:sort] == "Recently Updated"
-      @boards = Board.sort_last_updated
-    else
-      @boards = Board.all
+    respond_to do |f|
+      f.html {
+        if params[:sort] == "Alphabetical"
+          @boards = Board.sort_alphabetical
+        elsif params[:sort] == "Recently Updated"
+          @boards = Board.sort_last_updated
+        else
+          @boards = Board.all
+        end
+      }
+      f.json {render :json => Board.all}
     end
   end
 

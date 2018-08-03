@@ -37,6 +37,10 @@ class MessagesController < ApplicationController
     redirect_to board_path(@board)
   end
 
+  def index
+    render :json => Message.all
+  end
+
   private
 
   def message_params
