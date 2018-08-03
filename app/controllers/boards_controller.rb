@@ -26,7 +26,7 @@ class BoardsController < ApplicationController
           @boards = Board.all
         end
       }
-      f.json {render :json => Board.all}
+      f.json {render :json => Board.all, :root => false}
     end
   end
 
