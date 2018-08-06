@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: postgres://rezcdvruarsbyn:ecabd77a5b13e4e0d3156a3428988006f5b72ecb504f2ce9e857041c2bd4f00f@ec2-54-225-76-201.compute-1.amazonaws.com:5432/ddmdt4kge4kmnb
-  username: rezcdvruarsbyn
+  database: myapp_production
+  username: myapp
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
