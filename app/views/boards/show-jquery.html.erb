@@ -1,13 +1,13 @@
 <!-- boards/show-jquery -->
 <div class="callout large primary">
   <div class="text-center">
-    <h1 id="boardTopic"></h1>
+    <h1 data-id="<%= @board.id %>" id="boardTopic"></h1>
     <h3 class="subheader" id="boardDescription"></h3>
-    <h2 class="subheader" id="boardCreatedBy"></h2>
-    <%# if current_user == @board.creator %>
-      <!-- <h4 class="subheader"><%#= link_to "Edit Board", edit_board_path(@board) %></h4> -->
-      <!-- <h4 class="subheader"><%#= link_to "Delete Board", delete_board_path(@board) %></h4> -->
-    <%# end %>
+    <h2 class="subheader" id="boardCreator"></h2>
+    <% if current_user == @board.creator %>
+      <h4 class="subheader" id="editBoard"></h4>
+      <h4 class="subheader" id="deleteBoard"></h4>
+    <% end %>
   </div>
 </div>
 
