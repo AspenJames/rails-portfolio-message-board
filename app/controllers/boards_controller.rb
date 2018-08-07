@@ -33,6 +33,10 @@ class BoardsController < ApplicationController
   def show
     set_board
     @message = Message.new
+    respond_to do |f|
+      f.json {render :json => @board}
+      f.html {render "show-jquery"}
+    end
   end
 
   def edit
