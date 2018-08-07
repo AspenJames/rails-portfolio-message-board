@@ -12,12 +12,12 @@
 </div>
 
 <article class="grid-container">
-  <div class="grid-x align-center">
+  <div class="grid-x align-center" id="messagesDiv">
     <%= flash_alert %>
     <%= flash_notice %>
-    <% @board.messages.reject{|m| m.id.nil?}.each do |message| %>
-      <%= render :partial => "message", :locals => {:message => message} %>
-    <% end %>
+    <%# @board.messages.reject{|m| m.id.nil?}.each do |message| %>
+      <%#= render :partial => "message", :locals => {:message => message} %>
+    <%# end %>
   </div>
 
   <!-- new message form -->
@@ -40,3 +40,12 @@
   </div>
 
 </article>
+<script type="text/x-handlebars-template" id="messageTemplate">
+  <div class="cell medium-8">
+    <div class="blog-post">
+      <h3><a href="/users/{{userID}}">{{username}}</a></h3>
+      <p>{{messageContent}}</p>
+      <h4><a class="button button-rounded-hover" href="/boards/{{boardID}}/messages/{{messageID}}">Show Message</a></h4>
+    </div>
+  </div>
+</script>
