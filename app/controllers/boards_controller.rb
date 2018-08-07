@@ -35,7 +35,7 @@ class BoardsController < ApplicationController
     @message = Message.new
     respond_to do |f|
       f.json {render :json => @board}
-      f.html {render "show-jquery"}
+      f.html {render :show}
     end
   end
 

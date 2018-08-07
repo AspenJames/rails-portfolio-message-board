@@ -1,31 +1,20 @@
-<!-- boards/show -->
+<!-- boards/show-jquery -->
 <div class="callout large primary">
   <div class="text-center">
-    <h1><%= @board.topic %></h1>
-    <% if @board.description %>
-      <h3 class="subheader"><%= @board.description %></h3>
-    <% end %>
-    <h2 class="subheader">Created by <%= @board.creator.name || @board.creator.username %></h2>
+    <h1 data-id="<%= @board.id %>" id="boardTopic"></h1>
+    <h3 class="subheader" id="boardDescription"></h3>
+    <h2 class="subheader" id="boardCreator"></h2>
     <% if current_user == @board.creator %>
-      <h4 class="subheader"><%= link_to "Edit Board", edit_board_path(@board) %></h4>
-      <h4 class="subheader"><%= link_to "Delete Board", delete_board_path(@board) %></h4>
+      <h4 class="subheader" id="editBoard"></h4>
+      <h4 class="subheader" id="deleteBoard"></h4>
     <% end %>
   </div>
 </div>
 
 <article class="grid-container">
-  <div class="grid-x align-center">
+  <div class="grid-x align-center" id="messagesDiv">
     <%= flash_alert %>
     <%= flash_notice %>
-    <% @board.messages.reject{|m| m.id.nil?}.each do |message| %>
-    <div class="cell medium-8">
-      <div class="blog-post">
-        <h3><%= link_to message.user.username, user_path(message.user) %></h3>
-        <p><%= message.content %></p>
-        <h4><a class="button button-rounded-hover" href= <%= board_message_path(@board, message) %>>Show Message</a></h4>
-      </div>
-    </div>
-    <% end %>
   </div>
 
   <!-- new message form -->
@@ -35,12 +24,10 @@
         <div class="row">
           <div class="small-12 column">
             <h4>Post a Message</h4>
-            <% @message.errors.full_messages.each do |error| %>
-              <p class="error_message"><%= error %></p>
-            <% end %>
+            <p class="error_message"></p>
             <%= f.text_area :content, :placeholder => "Your message here!" %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
-            <%= f.submit :class => "button expanded", :value => "Post Message"%>
+            <%= f.submit :class => "button expanded", :value => "Post Message", :data => {:disable_with => "Post Message"}%>
           </div>
         </div>
       </div>
@@ -48,3 +35,12 @@
   </div>
 
 </article>
+<script type="text/x-handlebars-template" id="messageTemplate">
+  <div class="cell medium-8">
+    <div class="blog-post">
+      <h3><a href="/users/{{userID}}">{{username}}</a></h3>
+      <p>{{messageContent}}</p>
+      <h4><a class="button button-rounded-hover" href="/boards/{{boardID}}/messages/{{messageID}}">Show Message</a></h4>
+    </div>
+  </div>
+</script>

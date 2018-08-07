@@ -50,9 +50,6 @@ $(function(){
   });
 });
 
-//message stuff
-//user stuff
-
 function appendMessage(message, template) {
   // build data JSON to pass to template
   let data = {
@@ -67,6 +64,7 @@ function appendMessage(message, template) {
 }
 
 function resetForm() {
+  //clear text area, enable submit, focus cursor
   $("textarea").val("");
   $("input[type='submit']")[0].disabled = false;
   $("textarea").focus();
