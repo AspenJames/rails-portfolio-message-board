@@ -15,7 +15,9 @@
 //= require turbolinks
 //= require jquery
 //= require handlebars/dist/handlebars
-//= require_tree .
+//= require cable
+//= require messages
+//= require users
 
 
 $(function(){ $(document).foundation(); });
