@@ -50,25 +50,8 @@ $(function(){
   });
 });
 
-function Message(message_hash) {
-  this.user = new User(message_hash["user"]);
-  this.content = message_hash["content"];
-  this.id = message_hash["id"];
-  this.boardId = message_hash["board_id"];
-};
-
-Message.prototype.truncateContent = function(){
-  if (this.content.length > 200) {
-    return `${this.content.substring(0, 200)}...`;
-  } else {
-    return this.content;
-  }
-}
-
-function User(user_hash) {
-  this.id = user_hash["id"];
-  this.username = user_hash["username"];
-};
+//message stuff
+//user stuff
 
 function appendMessage(message, template) {
   // build data JSON to pass to template
