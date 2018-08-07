@@ -32,21 +32,30 @@ $(function(){
   $("#new_message").on("submit", function(event){
     event.preventDefault();
     $.post(`/boards/${id}/messages`, $(this).serialize(), function(response){
-      //build message data JSON
-      let data = {
-        "messageContent": response["message"]["content"],
-        "boardID": id,
-        "messageID": response["message"]["id"],
-        "userID": response["message"]["user"]["id"],
-        "username": response["message"]["user"]["username"]
-      };
-      //append to messagesDiv
-      $("#messagesDiv")[0].innerHTML += template(data);
+      // if an error message is received, response["message"] === undefined
+      if (response["message"] === undefined) {
+        $("p.error_message").text(response[0]);
+        $("input[type='submit']")[0].disabled = false;
+        $("textarea").focus();
+      } else {
+        //build message data JSON
+        let data = {
+          "messageContent": response["message"]["content"],
+          "boardID": id,
+          "messageID": response["message"]["id"],
+          "userID": response["message"]["user"]["id"],
+          "username": response["message"]["user"]["username"]
+        };
+        //append to messagesDiv
+        $("#messagesDiv")[0].innerHTML += template(data);
 
-      //clear form data, re-enable submit button, re-focus input field
-      $("textarea").val("");
-      $("input[type='submit']")[0].disabled = false;
-      $("textarea").focus();
+        //clear form data, re-enable submit button, re-focus input field
+        $("textarea").val("");
+        $("input[type='submit']")[0].disabled = false;
+        $("textarea").focus();
+        // clear any error messages, if exists
+        $("p.error_message").text("");
+      };
     });
   });
 });
