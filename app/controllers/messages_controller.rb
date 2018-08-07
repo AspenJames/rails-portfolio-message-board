@@ -4,11 +4,12 @@ class MessagesController < ApplicationController
   def create
     @board = Board.find(params[:board_id])
     @message = @board.messages.build(message_params)
-      if @board.save
-        redirect_to board_path(@board)
-      else
-        render 'boards/show'
-      end
+    if @board.save
+      # render json for jquery form submission
+      render :json => @message, :status => 201
+    else
+      render :json => @message.errors.full_messages, :status => 202
+    end
   end
 
   def show
