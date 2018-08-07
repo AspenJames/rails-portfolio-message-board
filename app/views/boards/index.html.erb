@@ -21,18 +21,22 @@
           </div>
         <% end %>
       </div>
-    </div>
-    <% @boards.each do |board| %>
-    <div class="cell medium-8">
-      <div class="blog-post">
-        <h3><%= board.topic %></h3>
-        <% board.messages.limit(2).each do |message| %>
-          <p><strong><%= link_to message.user.username, user_path(message.user) %></strong> - <%= message.content %></p>
-        <% end %>
-        <h4><a class="button button-rounded-hover" href=<%= board_path(board) %>>View Board</a></h4>
-      </div>
-    </div>
-    <% end %>
+    </div><br>
+    <div id="boards" class="cell medium-8"></div>
   </div>
 </article>
+
+<script type="text/x-handlebars-template" id="boardTemplate">
+  <div class="cell medium-8">
+    <div class="blog-post">
+      <h3>{{topic}}</h3>
+      <div id="{{id}}-messages"></div>
+      <h4><a class="button button-rounded-hover" href="/boards/{{id}}">View Board</a></h4>
+    </div>
+  </div>
+</script>
+<script type="text/x-handlebars-template" id="messageTemplate">
+ <p><strong><a href="/users/{{user_id}}">{{username}}</a></strong> - {{content}}</p>
+</script>
+
 <%= javascript_include_tag "boards" %>
