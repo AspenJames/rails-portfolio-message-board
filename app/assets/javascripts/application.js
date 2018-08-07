@@ -14,6 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery
+//= require handlebars/dist/handlebars
 //= require_tree .
 
 
