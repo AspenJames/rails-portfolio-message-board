@@ -1,5 +1,6 @@
 $(function(){
-  //boards/index JS
+  //clear boards div
+  $("#boards").text("");
   // compile handlebars template for boards
   let template = Handlebars.compile($("#boardTemplate").html());
   // compile handlebars template for messages

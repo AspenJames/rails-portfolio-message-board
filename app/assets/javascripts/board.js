@@ -1,4 +1,6 @@
 $(function(){
+  // clear message div
+  $("#messagesDiv").text("");
   // grab ID of current board requested
   let id = $("#boardTopic").data("id");
 
