@@ -17,7 +17,7 @@ class BoardsController < ApplicationController
 
   def index
     respond_to do |f|
-      f.html {@boards = Board.all}
+      f.html {render :index}
       f.json {
         if params[:sort] == "Alphabetical"
           render :json => Board.sort_alphabetical
