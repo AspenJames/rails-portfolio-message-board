@@ -73,7 +73,8 @@ function resetForm() {
 }
 
 
-$('button#sort').on("click", function(){
+$('a#sort').on("click", function(event){
+  event.preventDefault();
   // compile handlebars template
   let template = Handlebars.compile($("#messageTemplate").html());
   //clear messages div
