@@ -72,10 +72,17 @@ function resetForm() {
   $("textarea").focus();
 }
 
+
 $('button#sort').on("click", function(){
+  // compile handlebars template
+  let template = Handlebars.compile($("#messageTemplate").html());
+  //clear messages div
+  $("#messagesDiv").text('');
+  // grab board id
   let id = $("#boardTopic").data("id");
-  let messages = [];
+  // request board JSON
   $.get(`/boards/${id}`, function(data){
+    // sort messages by username
     data["board"]["messages"].sort(function(a,b){
       const nameA = a.user.username.toUpperCase();
       const nameB = b.user.username.toUpperCase();
@@ -86,9 +93,17 @@ $('button#sort').on("click", function(){
       }else {
         return 0
       }
-    }).forEach(function(message){
-      messages.push(new Message(message));
+    }).forEach(function(message_hash){
+      //build message, append to DOM
+      let message = new Message(message_hash);
+      let message_data = {
+        "messageContent": message.truncateContent(),
+        "boardID": message.boardId,
+        "messageID": message.id,
+        "userID": message.user.id,
+        "username": message.user.username
+      };
+      $("#messagesDiv")[0].innerHTML += template(message_data);
     });
-    console.log(messages);
   })
 })
