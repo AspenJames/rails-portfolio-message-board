@@ -71,3 +71,24 @@ function resetForm() {
   $("input[type='submit']")[0].disabled = false;
   $("textarea").focus();
 }
+
+$('button#sort').on("click", function(){
+  let id = $("#boardTopic").data("id");
+  let messages = [];
+  $.get(`/boards/${id}`, function(data){
+    data["board"]["messages"].sort(function(a,b){
+      const nameA = a.user.username.toUpperCase();
+      const nameB = b.user.username.toUpperCase();
+      if (nameA < nameB){
+        return -1
+      }else if (nameA > nameB){
+        return 1
+      }else {
+        return 0
+      }
+    }).forEach(function(message){
+      messages.push(new Message(message));
+    });
+    console.log(messages);
+  })
+})
