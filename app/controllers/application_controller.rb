@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   def welcome
   end
 
+  def guest 
+    redirect_to root_path if current_user != User.find_by(:email => "guest@example.com")
+  end
+
   def logged_in?
    !!current_user
   end

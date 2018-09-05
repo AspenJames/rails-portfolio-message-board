@@ -26,4 +26,6 @@ Rails.application.routes.draw do
 
   get '/logout' => 'sessions#destory', :as => 'logout'
 
+  get '/guest' => 'application#guest'
+
 end
