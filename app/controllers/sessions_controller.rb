@@ -19,15 +19,15 @@ class SessionsController < ApplicationController
         end
       end
       session[:user_id] = @user.id
-      if @user == User.find_by(:email => "guest@example.com")
-        redirect_to :guest
-        return 
-      end
       redirect_to root_path
     else
       @user = User.find_by(:username => params[:user][:username]).try(:authenticate, params[:user][:password])
       if @user
         session[:user_id] = @user.id
+        if @user == User.find_by(:email => "guest@example.com")
+          redirect_to :guest
+          return 
+        end
         redirect_to root_path
       else
         flash[:alert] = "Incorrect username and/or password"
