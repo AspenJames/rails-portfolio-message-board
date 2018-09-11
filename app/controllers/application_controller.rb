@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   def welcome
   end
 
+  def guest
+  end
+
   def logged_in?
     !!current_user
   end
