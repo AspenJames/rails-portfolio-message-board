@@ -4,11 +4,15 @@ This is a messaging board app built using Ruby on Rails.
 
 ## Ruby Version and Dependencies
 
-Built using Ruby version 2.3.7 - recommended to use [RVM](rvm.io) if you need to install this version. Dependencies can be found in the Gemfile and installed by executing `bundle install`
+Built using Ruby version 2.3.7 - I recommended using [RVM](rvm.io) if you need to install this version. Dependencies can be found in the Gemfile and installed by executing `bundle install`
 
 Some of the Ruby Gems used in this project are:
-- sqlite3 for the database
+- PostgresQl for the database
 - bcrypt for securing passwords
+- ActiveRecord Validators for avoiding bad data
+- JQuery for updating the DOM without page refreshes, and to get information
+  from the API backend 
+- Handlebars.js for templating
 - omniauth for logging in via Twitter and GitHub
 - dotenv-rails to maintain environment variables outside of VC
 
@@ -22,7 +26,7 @@ If you're familiar with how a Rails app is normally structured, you should have 
 - Views in `app/views/`
 - Routes in `config/routes.rb`
 - Database migrations/schema/etc in `app/db/`
-
+- JavaScripts are in `app/assets/javascripts`
 There is some seed data in `db/seeds.rb` - feel free to use this or edit this file at your discretion.
 
 ## Test Suite
