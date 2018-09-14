@@ -4,13 +4,14 @@ This is a messaging board app built using Ruby on Rails.
 
 ## Ruby Version and Dependencies
 
-Built using Ruby version 2.3.7 - recommended to use [RVM](rvm.io) if you need to install this version. Dependencies can be found in the Gemfile and installed by executing `bundle install`
+Built using Ruby version 2.3.7 - I recommend using [RVM](rvm.io) if you need to install this version. Dependencies can be found in the Gemfile and installed by executing `bundle install`
 
 Some of the Ruby Gems used in this project are:
-- sqlite3 for the database
+- PostgresQL for the database
 - bcrypt for securing passwords
+- ActiveRecord Validations to avoid bad data
 - omniauth for logging in via Twitter and GitHub
-- dotenv-rails to maintain environment variables outside of VC
+- dotenv-rails to maintain environment variables outside of version control
 
 ## The Code
 
